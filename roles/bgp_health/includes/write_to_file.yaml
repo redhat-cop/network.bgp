@@ -1,0 +1,16 @@
+---
+- name: Set default path
+  set_fact:
+    inventory_directory: ./inventory
+  when: inventory_directory is not defined
+
+- name: Create inventory directory
+  file:
+    path: "{{ inventory_directory }}/host_vars/{{ inventory_hostname }}"
+    state: directory
+
+- name: Write each resource to a file
+  copy:
+    content: "{{ {'bgp_health': bgp_health } | to_nice_yaml }}"
+    dest: "{{ inventory_directory }}/host_vars/{{ inventory_hostname }}/{{ 'bgp_health' }}.yaml"
+  when: bgp_health != {}

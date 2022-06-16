@@ -1,0 +1,20 @@
+- set_fact:
+    neighbors: []
+    bgp_health:
+      peer_count:  "{{ bgp_summary['bgp-information']['peer-count'] }}"
+      down_peer_count: "{{ bgp_summary['bgp-information']['down-peer-count'] }}"
+      group_count: "{{ bgp_summary['bgp-information']['down-peer-count'] }}"
+
+- name: Extracting BGP neighbors...
+  set_fact:
+    neighbors: '{{ neighbors + [
+    { "peer": item["peer-address"],
+     "peer_as": item["peer-as"],
+     "peer_state": item["peer-state"]},
+     ] }}'
+  loop: "{{ bgp_summary['bgp-information']['bgp-peer']}}"
+
+
+- set_fact:
+    bgp_health: "{{bgp_health | combine ( {'neighbors': neighbors}) }}"
+
