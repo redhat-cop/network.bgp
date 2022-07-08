@@ -1,0 +1,35 @@
+- name: Parse bgp summary
+  ansible.utils.cli_parse:
+    command: "show bgp summary"
+    parser:
+      name: ansible.netcommon.pyats
+    set_fact: bgp_summary
+  ignore_errors: yes
+
+- set_fact:
+    neighbors: []
+    bgp_health:
+      peer_count:  ""
+      down_peer_count: ""
+      group_count: ""
+
+- name: Extracting BGP neighbors...
+  set_fact:
+    neighbors: '{{ neighbors + [
+    { "peer": item.key,
+     "peer_as": item.value["address_family"][""].as,
+     "peer_state": item.value["address_family"][""].state_pfxrcd,
+     "msg_rcvd": item.value["address_family"][""].msg_rcvd,
+     "msg_sent": item.value["address_family"][""].msg_sent,
+     "total_memory": item.value["address_family"][""].total_memory,
+     "path": item.value["address_family"][""].path,
+
+     },
+
+     ] }}'
+  loop: "{{ bgp_summary['vrf']['default']['neighbor'] | dict2items }}"
+
+
+- set_fact:
+    bgp_health: "{{bgp_health | combine ( {'neighbors': neighbors}) }}"
+

@@ -1,0 +1,10 @@
+- include_tasks: ./health_checks/{{ ansible_network_os.split('.')[2] }}.yaml
+
+- set_fact:
+    health_checks: "{{ bgp_health | ansible.utils.health_check_view(item) }}"
+
+
+- name: Print BGP health checks
+  debug:
+    var: health_checks
+

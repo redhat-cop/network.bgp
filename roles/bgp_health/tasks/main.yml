@@ -1,20 +1,28 @@
 ---
-- debug:
-    var: hostvars
+#- debug:
+#    var: hostvars
 
-- name: Parse bgp summary
-  ansible.utils.cli_parse:
-    command: "show bgp summary"
-    parser:
-      name: ansible.netcommon.pyats
-    set_fact: bgp_summary
-  ignore_errors: yes
+#- include_tasks: includes/health_checks/{{ ansible_network_os.split('.')[2] }}.yaml
+#- name: Parse bgp summary
+#  ansible.utils.cli_parse:
+#    command: "show bgp summary"
+#    parser:
+#      name: ansible.netcommon.pyats
+#    set_fact: bgp_summary
+#  ignore_errors: yes
 
 - include_tasks: includes/health_checks/{{ ansible_network_os.split('.')[2] }}.yaml
 
-- name: "{{ ansible_network_os.split('.')[2] }}"
+- set_fact:
+    health_checks: "{{ health_check_view(bgp_health, 'all_neighbor_up') }}"
+
+- name: Print BGP health checks
   debug:
-    var: bgp_health
+    var: health_checks
 
+#- name: "{{ ansible_network_os.split('.')[2] }}"
+#  debug:
+#    var: bgp_health
 
-- include: includes/write_to_file.yaml
+# we don't require this
+# - include: includes/write_to_file.yaml

@@ -1,0 +1,292 @@
+---
+- hosts: ios
+  gather_facts: false
+  tasks:
+  - name: BGP manager
+    include_role:
+      name: ansible.bgp.run
+    vars:
+      actions:
+        - name: health_check
+          vars:
+            checks:
+              - name: all_neighbors_up
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#  vars:
+#    ansible_connection: ansible.netcommon.network_cli
+#  tasks:
+#  - name: invoke bgp health
+#    include_role:
+#      name: bgp_health
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#- hosts: junos
+#  gather_facts: false
+#  tasks:
+#  - name: invoke gather function
+#    include_role:
+#      name: bgp_manager
+#    vars:
+#      perform_task: deploy
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#- hosts: all
+#  gather_facts: false
+#  tasks:
+#  - name: Health Summary
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: health_ping
+#      resources:
+#        - bgp
+#        - ospf
+#
+#
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#- hosts: all
+#  gather_facts: false
+#  tasks:
+#  - name: invoke persist function
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: persist
+#      inventory_directory: ./inventory
+#      resources:
+#        - 'interfaces'
+#        - 'l3_interfaces'
+#        - 'ntp_global'
+
+#
+
+#- hosts: junos
+#  gather_facts: false
+#  tasks:
+#  - name: invoke deploy function
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: deploy
+#      state: merged
+#      inventory_directory: ./inventory
+#      resources:
+#        - 'interfaces'
+#        - '!all'
+
+#- hosts: junos
+#  gather_facts: false
+#  tasks:
+#  - name: invoke deploy function
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: persist
+#      inventory_directory: ./inventory
+#      resources:
+#        - '!ospf'
+#        - 'all'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#- hosts: junos
+#  gather_facts: false
+#  tasks:
+#  - name: invoke list function
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: list
+
+#- hosts: all
+#  gather_facts: false
+#  tasks:
+#  - name: invoke gather function
+#    include_role:
+#      name: resource_manager
+#    vars:
+#      perform_task: gather
+#      resources:
+#        - 'interfaces'
+#        - 'l2_interfaces'
+#        - 'l3_interfaces'
+
+
+#- hosts: all
+#  gather_facts: false
+#  tasks:
+#  - name: invoke persist function
+#    include_role:
+#      name: resource_manager
+#      tasks_from: persist
+#    vars:
+#      inventory_directory: ./inventory
+#      resources:
+#        - 'interfaces'
+#        - 'l3_interfaces'
+#        - 'ntp_global'
+

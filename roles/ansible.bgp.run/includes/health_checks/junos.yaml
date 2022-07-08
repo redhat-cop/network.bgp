@@ -1,0 +1,33 @@
+- name: Parse bgp summary
+  ansible.utils.cli_parse:
+    command: "show bgp summary"
+    parser:
+      name: ansible.netcommon.pyats
+    set_fact: bgp_summary
+  ignore_errors: yes
+
+- set_fact:
+    neighbors: []
+    bgp_health:
+      peer_count:  "{{ bgp_summary['bgp-information']['peer-count'] }}"
+      down_peer_count: "{{ bgp_summary['bgp-information']['down-peer-count'] }}"
+      group_count: "{{ bgp_summary['bgp-information']['down-peer-count'] }}"
+      bgp_thread_mode: "{{ bgp_summary['bgp-information']['bgp-thread-mode'] }}"
+
+- name: Extracting BGP neighbors...
+  set_fact:
+    neighbors: '{{ neighbors + [
+    { "peer": item["peer-address"],
+     "peer_as": item["peer-as"],
+     "peer_state": item["peer-state"],
+     "msg_rcvd": item["input-messages"],
+     "msg_sent": item["output-messages"],
+     "flap_count": item["flap-count"],
+     "route_queue_count": item["route-queue-count"],},
+     ] }}'
+  loop: "{{ bgp_summary['bgp-information']['bgp-peer']}}"
+
+
+- set_fact:
+    bgp_health: "{{bgp_health | combine ( {'neighbors': neighbors}) }}"
+

@@ -1,0 +1,4 @@
+---
+- include_tasks: includes/{{ item.name }}.yaml
+  loop: "{{ actions }}"
+
