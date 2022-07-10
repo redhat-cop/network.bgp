@@ -9,8 +9,12 @@
       actions:
         - name: health_check
           vars:
+#            details: true
             checks:
               - name: all_neighbors_up
+              - name: all_neighbors_down
+              - name: min_neighbors_up
+                min_count: 1
 
 
 

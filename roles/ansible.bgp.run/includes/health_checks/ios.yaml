@@ -4,7 +4,6 @@
     parser:
       name: ansible.netcommon.pyats
     set_fact: bgp_summary
-  ignore_errors: yes
 
 - set_fact:
     neighbors: []

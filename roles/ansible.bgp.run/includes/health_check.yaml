@@ -7,4 +7,3 @@
 - name: Print BGP health checks
   debug:
     var: health_checks
-
