@@ -1,8 +1,9 @@
----
 - name: invoke gather function
   include_role:
     name: ../../base/roles/resource_manager
   vars:
+    action: 'deploy'
     resources:
       - 'bgp_global'
       - 'bgp_address_family'
+
