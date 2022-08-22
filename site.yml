@@ -4,7 +4,7 @@
   tasks:
   - name: BGP Manager
     include_role:
-      name: ansible.bgp.run
+      name: network.bgp.run
     vars:
       actions:
         - name: health_check

@@ -1,0 +1,12 @@
+- name: Parse bgp summary
+  ansible.utils.cli_parse:
+    command: "show bgp summary"
+    parser:
+      name: ansible.netcommon.content_templates
+    set_fact: bgp_health
+
+
+- name: Show Summary facts
+  debug:
+    msg: "{{ bgp_health }}"
+
