@@ -1,0 +1,5 @@
+---
+- hosts: ios
+  gather_facts: false
+  roles:
+    - tests

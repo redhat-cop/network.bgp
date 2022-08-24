@@ -1,0 +1,3 @@
+- include: "{{ item }}"
+  loop:
+  - health_check.yml

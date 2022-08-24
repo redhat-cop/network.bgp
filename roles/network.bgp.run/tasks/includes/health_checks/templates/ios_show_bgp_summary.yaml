@@ -16,7 +16,7 @@
         ),
         "result": {
             "bgp_table_version": "{{ table_version }}",
-            "rout_table_version": "{{ route_table_version }}"
+            "route_table_version": "{{ route_table_version }}"
         }
     },
     {
