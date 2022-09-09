@@ -4,7 +4,6 @@ authors:
 dependencies:
   "ansible.netcommon": "*"
   "ansible.utils": '*'
-  "network.base": '*'
 
 license_file: LICENSE
 name: bgp
