@@ -6,4 +6,3 @@
     resources:
       - 'bgp_global'
       - 'bgp_address_family'
-

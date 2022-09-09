@@ -9,4 +9,3 @@
 - name: Show Summary facts
   debug:
     msg: "{{ bgp_health }}"
-

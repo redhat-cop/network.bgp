@@ -1,3 +1,4 @@
+# fmt: off
 [
     {
         "name": "router_id",
@@ -54,3 +55,4 @@
       }
     }
 ]
+ # fmt: on
