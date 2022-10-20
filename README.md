@@ -17,6 +17,9 @@ The `network.bgp` enables user to manage the BGP resources independent of platfo
 - This role enables users to create a runtime brownfield inventory with all the BGP configuration in terms of host vars. These host vars are ansible facts which have been gathered through the *_bgp_global and *_bgp_address_family network resource module.The tasks offered by this role could be observed as below:
 
 #### Perform BGP Health Checks
+- Health Checks operation fetch the current status of BGP Neighborship health.
+- This can also include the details about the BGP metrics(state, message received/sent, version, etc).
+
 ```yaml
 health_checks.yml
 ---
@@ -39,7 +42,11 @@ health_checks.yml
 ```
 
 
-#### Building Brownfield Inventory
+#### Building Brownfield Inventory with Persist
+- Persist operation fetch the bgp_global and bgp_address_family facts and store them as host vars.
+- Result of successful Persist operation would be an Inventory directory having facts as host vars acting as SOT
+  for operations like deploy, etc.
+
 ```
 - hosts: ios
   gather_facts: false
@@ -50,9 +57,12 @@ health_checks.yml
     vars:
       actions:
         - name: persist
+          inventory_directory: './inventory'
 ```
 
 #### Gather BGP Facts
+- Gather operation gathers the running-confguration specific to bgp_global and bgp_address_family resources.
+
 ```
 - hosts: ios
   gather_facts: false
@@ -65,7 +75,9 @@ health_checks.yml
         - name: gather
 ```
 
-#### Gather Deploy BGP Configuration
+#### Deploy BGP Configuration
+- Deploy operation will read the facts from the provided/default inventory and deploy the changes on to the appliances.
+
 ```
 - hosts: ios
   gather_facts: false
