@@ -4,6 +4,6 @@
      health_checks: "{{ bgp_health | health_check_view(item) }}"
 
 
-- name: Print BGP health checks
+- name: BGP health checks
   debug:
     var: health_checks

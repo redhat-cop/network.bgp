@@ -105,7 +105,7 @@ def health_check_view(*args, **kwargs):
     if len(data) < 2:
         raise AnsibleFilterError(
             "Missing either 'health facts' or 'other value in filter input,"
-            "refer 'ansible.utils.pealth_check_view' filter plugin documentation for details",
+            "refer 'ansible.utils.health_check_view' filter plugin documentation for details",
         )
 
     health_facts = data["health_facts"]
@@ -130,6 +130,7 @@ def health_check_view(*args, **kwargs):
 
             details = {}
             if is_present(checks, 'all_neighbors_up'):
+
                 n_dict = {}
                 n_dict.update(stats)
                 if vars.get('details'):
@@ -140,6 +141,7 @@ def health_check_view(*args, **kwargs):
 
             if is_present(checks, 'all_neighbors_down'):
                 n_dict = {}
+                details = {}
                 n_dict.update(stats)
                 if vars.get('details'):
                     details['neighbors'] = dn_lst
@@ -150,6 +152,7 @@ def health_check_view(*args, **kwargs):
             opr = is_present(checks, 'min_neighbors_up')
             if opr:
                 n_dict = {}
+                details = {}
                 n_dict.update(stats)
                 if vars.get('details'):
                     details['neighbors'] = un_lst
