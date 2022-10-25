@@ -1,0 +1,17 @@
+---
+- hosts: ios
+  gather_facts: false
+  tasks:
+  - name: BGP Manager
+    include_role:
+      name: network.bgp.run
+    vars:
+      actions:
+        - name: health_check
+          vars:
+            details: True
+            checks:
+              - name: all_neighbors_up
+              - name: all_neighbors_down
+              - name: min_neighbors_up
+                min_count: 1

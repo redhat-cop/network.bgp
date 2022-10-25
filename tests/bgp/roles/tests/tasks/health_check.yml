@@ -1,0 +1,52 @@
+- name: Set a health facts for the expect health facts
+  set_fact:
+    health_facts:
+      bgp_table_version: 3
+      local_as: 500
+      neighbors:
+        - bgp_table_version: 3
+          input_queue: 0
+          msg_rcvd: 73271
+          msg_sent: 73233
+          output_queue: 0
+          peer: "12.0.0.1"
+          peer_as: 500
+          peer_state: 1
+          uptime: "6w4d"
+          version: 4
+
+        - bgp_table_version: 1
+          input_queue: 0
+          msg_rcvd: 0
+          msg_sent: 0
+          output_queue: 0
+          peer: "23.0.0.1"
+          peer_as: 500
+          peer_state: "Idle"
+          uptime: "never"
+          version: 4
+      path:
+        memory_usage: 288
+        total_entries: 2
+
+      route_table_version: 3
+      router_id: "22.0.0.1"
+
+- name: Vars
+  set_fact:
+    item:
+      name: "health_check"
+      vars:
+        checks:
+          - name: "all_neighbors_up"
+          - name: "all_neighbors_down"
+          - name: "min_neighbors_up"
+            min_count: 1
+
+- set_fact:
+     health_checks: "{{ bgp_health | ansible.utils.health_check_view(item) }}"
+
+
+- name: Check for accurate facts
+  assert:
+    that:  "{{ health_checks == expected_health_checks }}"
