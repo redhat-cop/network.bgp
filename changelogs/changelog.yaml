@@ -1,0 +1,12 @@
+ancestor: null
+releases:
+  1.0.0:
+    changes:
+      minor_changes:
+      - Add Network BGP role.
+      - Fix ansible lint erros.
+    fragments:
+    - add_network_bgp_role.yaml
+    - ansible_lint_fixtures.yaml
+    - update_sanity_jobs.yaml
+    release_date: '2022-11-04'
