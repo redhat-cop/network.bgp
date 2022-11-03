@@ -1,5 +1,6 @@
+---
 - name: invoke list function
-  include_role:
+  ansible.builtin.include_role:
     name: ../../base/roles/resource_manager
   vars:
     action: 'list'

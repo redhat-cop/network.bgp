@@ -1,3 +1,4 @@
-- include: "{{ item }}"
+---
+- ansible.builtin.include: "{{ item }}"
   loop:
   - health_check.yml

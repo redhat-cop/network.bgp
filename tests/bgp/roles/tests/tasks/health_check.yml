@@ -1,5 +1,6 @@
+---
 - name: Set a health facts for the expect health facts
-  set_fact:
+  ansible.builtin.set_fact:
     health_facts:
       bgp_table_version: 3
       local_as: 500
@@ -33,7 +34,7 @@
       router_id: "22.0.0.1"
 
 - name: Vars
-  set_fact:
+  ansible.builtin.set_fact:
     item:
       name: "health_check"
       vars:
@@ -43,10 +44,11 @@
           - name: "min_neighbors_up"
             min_count: 1
 
-- set_fact:
+- name: Set BGP health facts
+  ansible.builtin.set_fact:
      health_checks: "{{ bgp_health | ansible.utils.health_check_view(item) }}"
 
 
 - name: Check for accurate facts
-  assert:
+  ansible.builtin.assert:
     that:  "{{ health_checks == expected_health_checks }}"

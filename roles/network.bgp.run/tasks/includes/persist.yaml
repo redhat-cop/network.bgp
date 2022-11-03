@@ -1,5 +1,6 @@
+---
 - name: invoke gather function
-  include_role:
+  ansible.builtin.include_role:
     name: ../../base/roles/resource_manager
   vars:
     action: 'persist'
