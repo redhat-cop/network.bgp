@@ -8,5 +8,5 @@
 
 
 - name: Show Summary facts
-  debug:
+  ansible.builtin.debug:
     msg: "{{ bgp_health }}"
