@@ -2,8 +2,8 @@
 authors:
   - Ansible Network Community (ansible-network)
 dependencies:
-  "ansible.netcommon": "*"
-  "ansible.utils": '*'
+  "ansible.netcommon": ">=4.1.0"
+  "ansible.utils": '>=2.7.0'
 
 license_file: LICENSE
 name: bgp

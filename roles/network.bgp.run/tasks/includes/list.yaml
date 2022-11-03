@@ -1,5 +1,5 @@
 ---
-- name: invoke list function
+- name: Invoke list function
   ansible.builtin.include_role:
     name: ../../base/roles/resource_manager
   vars:

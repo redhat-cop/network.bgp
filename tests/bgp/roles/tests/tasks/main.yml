@@ -1,4 +1,5 @@
 ---
-- ansible.builtin.include: "{{ item }}"
+- name: Health Check Test Run
+  ansible.builtin.include: "{{ item }}"
   loop:
   - health_check.yml
