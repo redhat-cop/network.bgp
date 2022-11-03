@@ -18,8 +18,8 @@ jobs:
   all_green:
     if: ${{ always() }}
     needs:
+      - ansible-lint
       - changelog
-      - sanity
     runs-on: ubuntu-latest
     steps:
       - run: >-

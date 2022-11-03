@@ -9,7 +9,7 @@
       actions:
         - name: health_check
           vars:
-            details: True
+            details: true
             checks:
               - name: all_neighbors_up
               - name: all_neighbors_down

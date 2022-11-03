@@ -1,5 +1,5 @@
 ---
-- name: invoke gather function
+- name: Invoke gather function
   ansible.builtin.include_role:
     name: ../../base/roles/resource_manager
   vars:

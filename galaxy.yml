@@ -1,10 +1,9 @@
 ---
 authors:
-  - Ansible Network Community (ansible-network)
+  - Rohit Thakur (rohitthakur2590)
 dependencies:
-  "ansible.netcommon": "*"
-  "ansible.utils": '*'
-
+  "ansible.netcommon": ">=4.1.0"
+  "ansible.utils": ">=2.7.0"
 license_file: LICENSE
 name: bgp
 description: Ansible Network BGP enables user to manage the BGP resources independent of platforms and perform BGP health checks.

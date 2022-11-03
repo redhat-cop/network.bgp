@@ -9,4 +9,4 @@
 
 - name: BGP health checks
   ansible.builtin.debug:
-    var: health_checks
+     var: health_checks

@@ -1,6 +1,8 @@
-## Network BGP Validated Content
+# Network BGP Validated Content
 
-### Overview
+This repository contains the `network.bgp` Ansible Collection.
+
+## Description
 
 The `network.bgp` enables user to manage the BGP resources independent of platforms and perform BGP health checks.
 
@@ -16,18 +18,19 @@ The `network.bgp` enables user to manage the BGP resources independent of platfo
        `min_neighbors_up`
 - This role enables users to create a runtime brownfield inventory with all the BGP configuration in terms of host vars. These host vars are ansible facts which have been gathered through the *_bgp_global and *_bgp_address_family network resource module.The tasks offered by this role could be observed as below:
 
-#### Perform BGP Health Checks
+### Perform BGP Health Checks
 - Health Checks operation fetch the current status of BGP Neighborship health.
 - This can also include the details about the BGP metrics(state, message received/sent, version, etc).
 
 ```yaml
 health_checks.yml
 ---
-- hosts: ios
+- name: Perform health checks
+  hosts: ios
   gather_facts: false
   tasks:
   - name: BGP Manager
-    include_role:
+    ansible.builtin.include_role:
       name: network.bgp.run
     vars:
       actions:
@@ -42,17 +45,18 @@ health_checks.yml
 ```
 
 
-#### Building Brownfield Inventory with Persist
+### Building Brownfield Inventory with Persist
 - Persist operation fetch the bgp_global and bgp_address_family facts and store them as host vars.
 - Result of successful Persist operation would be an Inventory directory having facts as host vars acting as SOT
   for operations like deploy, etc.
 
-```
-- hosts: ios
+```yaml
+- name: Persist the facts into host vars
+  hosts: ios
   gather_facts: false
   tasks:
   - name: BGP Manager
-    include_role:
+    ansible.builtin.include_role:
       name: network.bgp.run
     vars:
       actions:
@@ -63,12 +67,13 @@ health_checks.yml
 #### Gather BGP Facts
 - Gather operation gathers the running-confguration specific to bgp_global and bgp_address_family resources.
 
-```
-- hosts: ios
+```yaml
+- name: Gather Facts
+  hosts: ios
   gather_facts: false
   tasks:
   - name: BGP Manager
-    include_role:
+    ansible.builtin.include_role:
       name: network.bgp.run
     vars:
       actions:
@@ -78,8 +83,9 @@ health_checks.yml
 #### Deploy BGP Configuration
 - Deploy operation will read the facts from the provided/default inventory and deploy the changes on to the appliances.
 
-```
-- hosts: ios
+```yaml
+- name: Deploy host vars facts
+  hosts: ios
   gather_facts: false
   tasks:
   - name: BGP Manager
@@ -89,3 +95,18 @@ health_checks.yml
       actions:
         - name: deploy
 ```
+### Code of Conduct
+This collection follows the Ansible project's
+[Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
+Please read and familiarize yourself with this document.
+
+
+## Release notes
+
+Release notes are available [here](https://github.com/redhat-cop/network.bgp/blob/main/CHANGELOG.rst).
+
+## Licensing
+
+GNU General Public License v3.0 or later.
+
+See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
