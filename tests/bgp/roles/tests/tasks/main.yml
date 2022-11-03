@@ -1,5 +1,5 @@
 ---
 - name: Health Check Test Run
-  ansible.builtin.include: "{{ item }}"
+  ansible.builtin.include_task: "{{ item }}"
   loop:
   - health_check.yml
