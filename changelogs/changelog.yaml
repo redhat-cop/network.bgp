@@ -10,3 +10,10 @@ releases:
     - ansible_lint_fixtures.yaml
     - update_sanity_jobs.yaml
     release_date: '2022-11-04'
+  1.1.0:
+    changes:
+      release_summary: Re-releasing v1.0.0 with updated version tag and fixed URLs
+        for issues and repository in galaxy.yml.
+    fragments:
+      - prep_1.1.0.yaml
+    release_date: '2022-11-09'
