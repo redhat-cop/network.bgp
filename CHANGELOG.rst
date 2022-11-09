@@ -5,6 +5,14 @@ Network Bgp Collection Release Notes
 .. contents:: Topics
 
 
+v1.2.0
+======
+
+Release Summary
+---------------
+
+- Re-releasing v1.1.0 with updated version tag and fixed role name.
+
 v1.1.0
 ======
 

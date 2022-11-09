@@ -17,3 +17,9 @@ releases:
     fragments:
       - prep_1.1.0.yaml
     release_date: '2022-11-09'
+  1.2.0:
+    changes:
+      release_summary: Re-releasing v1.1.0 with updated version tag and fixed role name.
+    fragments:
+      - prep_1.2.0.yaml
+    release_date: '2022-11-09'
