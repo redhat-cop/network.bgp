@@ -2,9 +2,7 @@
 [
     {
       "name": "neighbors",
-      "getval": re.compile(
-                  r"""^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<version>\d+)\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<bgp_table_version>\d+)\s+(?P<input_queue>\d+)\s+(?P<output_queue>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)""",
-      ),
+      "getval": '''^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<version>\d+)\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<bgp_table_version>\d+)\s+(?P<input_queue>\d+)\s+(?P<output_queue>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)''',
       "result": {
         "neighbors": [
         {

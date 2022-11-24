@@ -2,9 +2,7 @@
 [
     {
         "name": "router_id",
-        "getval": re.compile(
-            r"""BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)"""
-        ),
+        "getval": '''BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)'''
         "result": {
             "router_id": "{{ router_id }}",
             "local_as": "{{ local_as }}"
@@ -12,9 +10,7 @@
     },
     {
         "name": "bgp_table_version",
-        "getval": re.compile(
-            r"""BGP table version is\s(?P<table_version>\d+),(.*)(?P<route_table_version>\d+)""",
-        ),
+        "getval": '''BGP table version is\s(?P<table_version>\d+),(.*)(?P<route_table_version>\d+)''',
         "result": {
             "bgp_table_version": "{{ table_version }}",
             "rout_table_version": "{{ route_table_version }}"
@@ -22,9 +18,7 @@
     },
     {
         "name": "path_memory_usage",
-        "getval": re.compile(
-            r"""(?P<total_entries>\d+)\snetwork entries using(\s(?P<memory_usage>\d+))""",
-        ),
+        "getval": '''(?P<total_entries>\d+)\snetwork entries using(\s(?P<memory_usage>\d+))''',
         "result": {
             "path": {
                 "memory_usage": "{{ memory_usage }}",
@@ -34,9 +28,7 @@
     },
     {
       "name": "neighbors",
-      "getval": re.compile(
-                  r"""^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<output_queue>\d+)\s+(?P<flaps>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)""",
-      ),
+      "getval": '''^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<output_queue>\d+)\s+(?P<flaps>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)''',
       "result": {
         "neighbors": [
         {
