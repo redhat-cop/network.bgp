@@ -28,5 +28,5 @@ sections:
     - Known Issues
   - - doc_changes
     - Documentation Changes
-title: Network Base Collection
+title: Network Bgp Collection
 trivial_section_name: trivial
