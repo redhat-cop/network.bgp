@@ -24,6 +24,6 @@ jobs:
     steps:
       - run: >-
           python -c "assert set([
+          '${{ needs.ansible-lint.result }}',
           '${{ needs.changelog.result }}',
-          '${{ needs.sanity.result }}'
           ]) == {'success'}"
