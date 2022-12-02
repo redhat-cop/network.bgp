@@ -1,9 +1,17 @@
-=====================================
+====================================
 Network Bgp Collection Release Notes
-=====================================
+====================================
 
 .. contents:: Topics
 
+
+v1.4.0
+======
+
+Minor Changes
+-------------
+
+- correct network resource manager role invoking
 
 v1.3.0
 ======

@@ -31,3 +31,10 @@ releases:
     fragments:
     - update_parsers.yaml
     release_date: '2022-11-30'
+  1.4.0:
+    changes:
+      minor_changes:
+      - correct network resource manager role invoking
+    fragments:
+    - invoke_network_bgp.yaml
+    release_date: '2022-12-02'
