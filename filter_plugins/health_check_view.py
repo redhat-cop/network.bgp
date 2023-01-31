@@ -94,6 +94,7 @@ RETURN = """
 """
 
 from ansible.errors import AnsibleFilterError
+import q
 
 ARGSPEC_CONDITIONALS = {}
 
@@ -111,6 +112,7 @@ def health_check_view(*args, **kwargs):
     health_facts = data["health_facts"]
     target = data["target"]
     health_checks = {}
+    health_checks['status'] = 'successful'
     if target['name'] == 'health_check':
         vars = target.get('vars')
         if vars:
@@ -129,17 +131,31 @@ def health_check_view(*args, **kwargs):
             stats['total'] = stats['up'] + stats['down']
 
             details = {}
-            if is_present(checks, 'all_neighbors_up'):
+            data = get_health(checks)
 
+            # summary = is_present(checks, 'bgp_status_summary')
+            if data['summary']:
+                n_dict = {}
+                n_dict.update(stats)
+                if vars.get('details'):
+                    details['neighbors'] = un_lst
+                    n_dict['details'] = details
+                health_checks[data['summary'].get('name')] = n_dict
+
+            # all_up = is_present(checks, 'all_neighbors_down')
+            if data['all_up']:
                 n_dict = {}
                 n_dict.update(stats)
                 if vars.get('details'):
                     details['neighbors'] = un_lst
                     n_dict['details'] = details
                 n_dict['check_status'] = get_status(stats, 'up')
-                health_checks['all_neighbors_up'] = n_dict
+                if n_dict['check_status'] == 'unsuccessful' and not data['all_up'].get('ignore_errors'):
+                    health_checks['status'] = 'unsuccessful'
+                health_checks[data['all_up'].get('name')] = n_dict
 
-            if is_present(checks, 'all_neighbors_down'):
+            #all_down = is_present(checks, 'all_neighbors_down')
+            if data['all_down']:
                 n_dict = {}
                 details = {}
                 n_dict.update(stats)
@@ -147,18 +163,22 @@ def health_check_view(*args, **kwargs):
                     details['neighbors'] = dn_lst
                     n_dict['details'] = details
                 n_dict['check_status'] = get_status(stats, 'down')
-                health_checks['all_neighbors_down'] = n_dict
+                if n_dict['check_status'] == 'unsuccessful' and not data['all_down'].get('ignore_errors'):
+                    health_checks['status'] = 'unsuccessful'
+                health_checks[data['all_down'].get('name')] = n_dict
 
-            opr = is_present(checks, 'min_neighbors_up')
-            if opr:
+            # min_up = is_present(checks, 'min_neighbors_up')
+            if data['min_up']:
                 n_dict = {}
                 details = {}
                 n_dict.update(stats)
                 if vars.get('details'):
                     details['neighbors'] = un_lst
                     n_dict['details'] = details
-                n_dict['check_status'] = get_status(stats, 'min', opr['min_count'])
-                health_checks['min_neighbors_up'] = n_dict
+                n_dict['check_status'] = get_status(stats, 'min', data['min_up']['min_count'])
+                if n_dict['check_status'] == 'unsuccessful'  and not data['min_up'].get('ignore_errors'):
+                    health_checks['status'] = 'unsuccessful'
+                health_checks[data['min_up'].get('name')] = n_dict
         else:
             health_checks = health_facts
     return health_checks
@@ -166,16 +186,29 @@ def health_check_view(*args, **kwargs):
 
 def get_status(stats, check, count=None):
     if check in ('up', 'down'):
-        return 'successful' if stats['total'] == stats[check] else 'failed'
+        return 'successful' if stats['total'] == stats[check] else 'unsuccessful'
     else:
-        return 'successful' if count <= stats['up'] else 'failed'
+        return 'successful' if count <= stats['up'] else 'unsuccessful'
 
+def get_ignore_status(item):
+    if not item.get("ignore_errors"):
+        item['ignore_errors'] = False
+    return item
 
 def is_present(health_checks, option):
     for item in health_checks:
         if item['name'] == option:
-            return item
+             return get_ignore_status(item)
     return None
+
+def get_health(checks):
+    dict = {}
+    dict['summary'] = is_present(checks, 'bgp_status_summary')
+    dict['all_up'] = is_present(checks, 'all_neighbors_up')
+    dict['all_down'] = is_present(checks, 'all_neighbors_down')
+    dict['min_up'] = is_present(checks, 'min_neighbors_up')
+
+    return dict
 
 
 class FilterModule(object):

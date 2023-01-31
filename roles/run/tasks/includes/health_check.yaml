@@ -6,7 +6,7 @@
   ansible.builtin.set_fact:
      health_checks: "{{ bgp_health | health_check_view(item) }}"
 
-
 - name: BGP health checks
   ansible.builtin.debug:
      var: health_checks
+  failed_when: "'unsuccessful' == health_checks.status"

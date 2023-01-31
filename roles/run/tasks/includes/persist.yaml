@@ -1,4 +1,28 @@
 ---
+- name: Set default path
+  ansible.builtin.set_fact:
+    inventory: ./inventory
+  when: inventory_directory is not defined
+
+- name: Set default path
+  ansible.builtin.set_fact:
+    inventory: "{{ inventory_directory }}"
+  when: inventory_directory is defined
+
+- name: Set ignore_empty
+  ansible.builtin.set_fact:
+    ignore_empty: false
+  when: persist_empty is not defined
+
+- name: Set ignore_empty
+  ansible.builtin.set_fact:
+    ignore_empty: "{{ persist_empty }}"
+  when: persist_empty is defined
+
+- name: Print
+  debug:
+    var: ignore_empty
+
 - name: Invoke gather function
   ansible.builtin.include_role:
     name: network.base.resource_manager
@@ -7,3 +31,5 @@
     resources:
       - 'bgp_global'
       - 'bgp_address_family'
+    persist_empty: "{{ ignore_empty }}"
+    inventory_directory: "{{ inventory }}"
