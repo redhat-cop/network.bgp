@@ -2,10 +2,6 @@
 - name: Include tasks
   ansible.builtin.include_tasks: ./health_checks/{{ ansible_network_os.split('.')[2] }}.yaml
 
-- name: Print
-  debug: 
-    var: bgp_health
-
 - name: Set health checks fact
   ansible.builtin.set_fact:
      health_checks: "{{ bgp_health | health_check_view(item) }}"
