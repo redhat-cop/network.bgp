@@ -19,10 +19,6 @@
     ignore_empty: "{{ persist_empty }}"
   when: persist_empty is defined
 
-- name: Print
-  debug:
-    var: ignore_empty
-
 - name: Invoke gather function
   ansible.builtin.include_role:
     name: network.base.resource_manager

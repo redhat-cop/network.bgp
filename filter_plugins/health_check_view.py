@@ -17,73 +17,88 @@ DOCUMENTATION = """
 """
 
 EXAMPLES = r"""
+- name: health_check
+    vars:
+      checks:
+        - name: all_neighbors_up
+          ignore_errors: true
+        - name: all_neighbors_down
+          ignore_errors: true
+        - name: min_neighbors_up
+          min_count: 1
+        - name: bgp_status_summary
+
 - set_fact:
-   "health_facts":{
-   "down_peer_count":"",
-   "group_count":"",
-   "neighbors":[
-      {
-         "msg_rcvd":3839,
-         "msg_sent":3834,
-         "path":{
-            "memory_usage":168,
-            "total_entries":2
-         },
-         "peer":"12.0.0.1",
-         "peer_as":500,
-         "peer_state":"1",
-         "total_memory":776
-      },
-      {
-         "msg_rcvd":0,
-         "msg_sent":0,
-         "path":{
-            "memory_usage":168,
-            "total_entries":2
-         },
-         "peer":"23.0.0.1",
-         "peer_as":500,
-         "peer_state":"Idle",
-         "total_memory":776
-      }
-   ],
-   "peer_count":""
+   "bgp_health":{
+        "bgp_table_version": 3,
+        "local_as": 500,
+        "neighbors": [
+            {
+                "bgp_table_version": 3,
+                "input_queue": 0,
+                "msg_rcvd": 52076,
+                "msg_sent": 52111,
+                "output_queue": 0,
+                "peer": "12.0.0.1",
+                "peer_as": 500,
+                "peer_state": 1,
+                "uptime": "4w4d",
+                "version": 4
+            },
+            {
+                "bgp_table_version": 1,
+                "input_queue": 0,
+                "msg_rcvd": 0,
+                "msg_sent": 0,
+                "output_queue": 0,
+                "peer": "23.0.0.1",
+                "peer_as": 500,
+                "peer_state": "Idle",
+                "uptime": "never",
+                "version": 4
+            }
+        ],
+        "path": {
+            "memory_usage": 288,
+            "total_entries": 2
+        },
+        "route_table_version": 3,
+        "router_id": "192.168.255.229"
+    }
+
+- name: Set health checks fact
+  ansible.builtin.set_fact:
+     health_checks: "{{ bgp_health | health_check_view(item) }}"
+
+ok: [192.168.22.43] => {
+    "failed_when_result": false,
+    "health_checks": {
+        "all_neighbors_down": {
+            "check_status": "unsuccessful",
+            "down": 1,
+            "total": 2,
+            "up": 1
+        },
+        "all_neighbors_up": {
+            "check_status": "unsuccessful",
+            "down": 1,
+            "total": 2,
+            "up": 1
+        },
+        "bgp_status_summary": {
+            "down": 1,
+            "total": 2,
+            "up": 1
+        },
+        "min_neighbors_up": {
+            "check_status": "successful",
+            "down": 1,
+            "total": 2,
+            "up": 1
+        },
+        "status": "successful"
+    }
 }
-
-- set_fact:
-    "action": {
-   "name":"health_check",
-   "vars":{
-      "checks":[
-         {
-            "name":"all_neighbors_up"
-         },
-         {
-            "name":"all_neighbors_down"
-         },
-         {
-            "min_count":1,
-            "name":"min_neighbors_up"
-         }
-      ]
-   }
-} 
-
-- name: Get final list of parameters
-  register: result
-  set_fact:
-    final_params: "{{ health_facts|health_check_view(action) }}"
-
-# TASK [Target list] **********************************************************
-# ok: [localhost] => {
-#     "msg": {
-#         "actionable": [
-#             "2",
-#             "4"
-#         ],
-#         "unsupported": []
-#     }
-# }
 """
 
 RETURN = """
@@ -94,7 +109,6 @@ RETURN = """
 """
 
 from ansible.errors import AnsibleFilterError
-import q
 
 ARGSPEC_CONDITIONALS = {}
 
@@ -133,7 +147,6 @@ def health_check_view(*args, **kwargs):
             details = {}
             data = get_health(checks)
 
-            # summary = is_present(checks, 'bgp_status_summary')
             if data['summary']:
                 n_dict = {}
                 n_dict.update(stats)
@@ -142,7 +155,6 @@ def health_check_view(*args, **kwargs):
                     n_dict['details'] = details
                 health_checks[data['summary'].get('name')] = n_dict
 
-            # all_up = is_present(checks, 'all_neighbors_down')
             if data['all_up']:
                 n_dict = {}
                 n_dict.update(stats)
@@ -154,7 +166,6 @@ def health_check_view(*args, **kwargs):
                     health_checks['status'] = 'unsuccessful'
                 health_checks[data['all_up'].get('name')] = n_dict
 
-            #all_down = is_present(checks, 'all_neighbors_down')
             if data['all_down']:
                 n_dict = {}
                 details = {}
@@ -167,7 +178,6 @@ def health_check_view(*args, **kwargs):
                     health_checks['status'] = 'unsuccessful'
                 health_checks[data['all_down'].get('name')] = n_dict
 
-            # min_up = is_present(checks, 'min_neighbors_up')
             if data['min_up']:
                 n_dict = {}
                 details = {}
