@@ -16,6 +16,7 @@ The `network.bgp` enables user to manage the BGP resources independent of platfo
        `all_neigbors_up`
        `all_neighbors_down`
        `min_neighbors_up`
+       `bgp_status_summary`
 - This role enables users to create a runtime brownfield inventory with all the BGP configuration in terms of host vars. These host vars are ansible facts which have been gathered through the *_bgp_global and *_bgp_address_family network resource module.The tasks offered by this role could be observed as below:
 
 ### Perform BGP Health Checks
@@ -40,6 +41,7 @@ health_checks.yml
             checks:
               - name: all_neighbors_up
               - name: all_neighbors_down
+                ignore_errors: true
               - name: min_neighbors_up
                 min_count: 1
 ```
