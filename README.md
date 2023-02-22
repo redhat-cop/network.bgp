@@ -108,7 +108,7 @@ health_checks.yml
   tasks:
   - name: BGP Manager
     include_role:
-      name: network.ospf.run
+      name: network.bgp.run
     vars:
       actions:
         - name: detect
@@ -124,7 +124,7 @@ health_checks.yml
   tasks:
   - name: BGP Manager
     include_role:
-      name: network.ospf.run
+      name: network.bgp.run
     vars:
       actions:
         - name: remediate
