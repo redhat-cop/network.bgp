@@ -38,3 +38,19 @@ releases:
     fragments:
     - invoke_network_bgp.yaml
     release_date: '2022-12-02'
+  2.0.0:
+    changes:
+      bugfixes:
+      - Fix issue of state in remediate and detect.
+      major_changes:
+      - Add ignore error features.
+      - Add summary health checks.
+      - Update health checks to collectively fail when any health-check fails.
+      minor_changes:
+      - Implement detect and remediate task enhancements.
+    fragments:
+    - fix_detect_remediate.yaml
+    - health_checks_features_enhancement.yaml
+    - task_enhancements.yaml
+    - update_docs_for_health_checks.yaml
+    release_date: '2023-02-23'
