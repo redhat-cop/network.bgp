@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - Fix issue of state in remediate and detect.
