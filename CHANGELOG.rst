@@ -5,6 +5,26 @@ Network Bgp Collection Release Notes
 .. contents:: Topics
 
 
+v2.0.0
+======
+
+Major Changes
+-------------
+
+- Add ignore error features.
+- Add summary health checks.
+- Update health checks to collectively fail when any health-check fails.
+
+Minor Changes
+-------------
+
+- Implement detect and remediate task enhancements.
+
+Bugfixes
+--------
+
+- Fix issue of state in remediate and detect.
+
 v1.4.0
 ======
 

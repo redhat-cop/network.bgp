@@ -1,5 +1,0 @@
----
-major_changes:
-  - Update health checks to collectively fail when any health-check fails.
-  - Add ignore error features.
-  - Add summary health checks.
