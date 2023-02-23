@@ -4,6 +4,7 @@
     name: network.base.resource_manager
   vars:
     action: 'detect'
+    state: 'replaced'
     resources:
       - 'bgp_global'
       - 'bgp_address_family'
