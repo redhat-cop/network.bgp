@@ -26,8 +26,7 @@
 
   {
     "name": "bgp_table_version",
-    "getval": '''BGP table version is\s(?P<table_version>\d+),(.*)(?P<route_table_version>\d+)'''
-    ),
+    "getval": '''BGP table version is\s(?P<table_version>\d+),(.*)(?P<route_table_version>\d+)''',
     "result": {
       "bgp_table_version": "{{ table_version }}",
       "route_table_version": "{{ route_table_version }}"
