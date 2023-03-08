@@ -103,7 +103,7 @@ ok: [192.168.22.43] => {
 
 RETURN = """
   health_checks:
-    description: BGP health checks 
+    description: BGP health checks
     type: dict
 
 """
@@ -186,7 +186,7 @@ def health_check_view(*args, **kwargs):
                     details['neighbors'] = un_lst
                     n_dict['details'] = details
                 n_dict['check_status'] = get_status(stats, 'min', data['min_up']['min_count'])
-                if n_dict['check_status'] == 'unsuccessful'  and not data['min_up'].get('ignore_errors'):
+                if n_dict['check_status'] == 'unsuccessful' and not data['min_up'].get('ignore_errors'):
                     health_checks['status'] = 'unsuccessful'
                 health_checks[data['min_up'].get('name')] = n_dict
         else:
@@ -200,16 +200,19 @@ def get_status(stats, check, count=None):
     else:
         return 'successful' if count <= stats['up'] else 'unsuccessful'
 
+
 def get_ignore_status(item):
     if not item.get("ignore_errors"):
         item['ignore_errors'] = False
     return item
 
+
 def is_present(health_checks, option):
     for item in health_checks:
         if item['name'] == option:
-             return get_ignore_status(item)
+            return get_ignore_status(item)
     return None
+
 
 def get_health(checks):
     dict = {}
