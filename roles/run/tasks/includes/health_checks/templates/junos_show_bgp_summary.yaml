@@ -2,7 +2,7 @@
 [
     {
         "name": "router_id",
-        "getval": '''BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)'''
+        "getval": '''BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)''',
         "result": {
             "router_id": "{{ router_id }}",
             "local_as": "{{ local_as }}"
