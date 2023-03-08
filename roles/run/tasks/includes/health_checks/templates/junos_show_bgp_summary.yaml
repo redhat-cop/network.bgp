@@ -2,7 +2,7 @@
 [
     {
         "name": "router_id",
-        "getval": '''BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)'''
+        "getval": '''BGP router identifier\s(?P<router_id>\S+),\slocal AS number\s(?P<local_as>\d+)''',
         "result": {
             "router_id": "{{ router_id }}",
             "local_as": "{{ local_as }}"
@@ -27,22 +27,22 @@
         }
     },
     {
-      "name": "neighbors",
-      "getval": '''^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<output_queue>\d+)\s+(?P<flaps>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)''',
-      "result": {
-        "neighbors": [
-        {
-          "peer": "{{ peer }}",
-          "peer_as": "{{ peer_as }}",
-          "msg_rcvd": "{{ msg_rcvd }}",
-          "msg_sent": "{{ msg_sent }}",
-          "output_queue": "{{ output_queue }}",
-          "uptime": "{{ uptime }}",
-          "flaps": "{{ flaps }}",
-          "peer_state": "{{ peer_state }}",
+        "name": "neighbors",
+        "getval": '''^(?P<peer>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+(?P<peer_as>\d+)\s+(?P<msg_rcvd>\d+)\s+(?P<msg_sent>\d+)\s+(?P<output_queue>\d+)\s+(?P<flaps>\d+)\s+(?P<uptime>\S+)\s+(?P<peer_state>\S+)''',
+        "result": {
+            "neighbors": [
+            {
+            "peer": "{{ peer }}",
+            "peer_as": "{{ peer_as }}",
+            "msg_rcvd": "{{ msg_rcvd }}",
+            "msg_sent": "{{ msg_sent }}",
+            "output_queue": "{{ output_queue }}",
+            "uptime": "{{ uptime }}",
+            "flaps": "{{ flaps }}",
+            "peer_state": "{{ peer_state }}",
+            }
+            ]
         }
-        ]
-      }
     }
 ]
 # fmt: on
