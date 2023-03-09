@@ -6,6 +6,25 @@ This repository contains the `network.bgp` Ansible Collection.
 
 The `network.bgp` enables user to manage the BGP resources independent of platforms and perform BGP health checks.
 
+## Tested with Ansible
+
+Tested with ansible-core 2.13 releases.
+
+## Installation
+
+```
+ansible-galaxy collection install git+https://github.com/redhat-cop/network.bgp
+```
+
+You can also include it in a `requirements.yml` file and install it via `ansible-galaxy collection install -r requirements.yml` using the format:
+
+```yaml
+collections:
+- name: https://github.com/redhat-cop/network.bgp.git
+  type: git
+  version: main
+```
+
 **Capabilities**
 - `Build Brownfield Inventory`: Users want to be able to get the facts for BGP resources and store it as host_vars thus enabling the capability to get facts for all the hosts within the inventory and store facts in a structured format which acts as SOT.
 - `BGP Resource Management`: Users want to be able to manage the BGP global and BGP address family configurations.This also includes the enablement of gathering facts, updating BGP resource host-vars and deploying config onto the appliance.
