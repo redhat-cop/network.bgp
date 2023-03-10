@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - Fix filter plugins call issue for health checks.
