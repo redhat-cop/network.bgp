@@ -4,7 +4,7 @@
 
 - name: Set health checks fact
   ansible.builtin.set_fact:
-     health_checks: "{{ bgp_health | health_check_view(item) }}"
+     health_checks: "{{ bgp_health | network.bgp.health_check_view(item) }}"
 
 - name: BGP health checks
   ansible.builtin.debug:
