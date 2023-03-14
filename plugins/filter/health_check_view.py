@@ -64,35 +64,35 @@ EXAMPLES = r"""
   ansible.builtin.set_fact:
      health_checks: "{{ bgp_health | health_check_view(item) }}"
 
-ok: [192.168.22.43] => {
-    "failed_when_result": false,
-    "health_checks": {
-        "all_neighbors_down": {
-            "check_status": "unsuccessful",
-            "down": 1,
-            "total": 2,
-            "up": 1
-        },
-        "all_neighbors_up": {
-            "check_status": "unsuccessful",
-            "down": 1,
-            "total": 2,
-            "up": 1
-        },
-        "bgp_status_summary": {
-            "down": 1,
-            "total": 2,
-            "up": 1
-        },
-        "min_neighbors_up": {
-            "check_status": "successful",
-            "down": 1,
-            "total": 2,
-            "up": 1
-        },
-        "status": "successful"
-    }
-}
+# ok: [192.168.22.43] => {
+#     "failed_when_result": false,
+#     "health_checks": {
+#         "all_neighbors_down": {
+#             "check_status": "unsuccessful",
+#             "down": 1,
+#             "total": 2,
+#             "up": 1
+#         },
+#         "all_neighbors_up": {
+#             "check_status": "unsuccessful",
+#             "down": 1,
+#             "total": 2,
+#             "up": 1
+#         },
+#         "bgp_status_summary": {
+#             "down": 1,
+#             "total": 2,
+#             "up": 1
+#         },
+#         "min_neighbors_up": {
+#             "check_status": "successful",
+#             "down": 1,
+#             "total": 2,
+#             "up": 1
+#         },
+#         "status": "successful"
+#     }
+# }
 """
 
 RETURN = """
