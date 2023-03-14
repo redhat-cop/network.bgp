@@ -53,6 +53,7 @@ health_checks.yml
     ansible.builtin.include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: health_check
           vars:
@@ -80,6 +81,7 @@ health_checks.yml
     ansible.builtin.include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: persist
           inventory_directory: './inventory'
@@ -97,6 +99,7 @@ health_checks.yml
     ansible.builtin.include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: gather
 ```
@@ -113,6 +116,7 @@ health_checks.yml
     include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: deploy
 ```
@@ -129,6 +133,7 @@ health_checks.yml
     include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: detect
 ```
@@ -145,6 +150,7 @@ health_checks.yml
     include_role:
       name: network.bgp.run
     vars:
+      ansible_network_os: cisco.ios.ios
       actions:
         - name: remediate
       
