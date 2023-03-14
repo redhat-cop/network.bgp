@@ -28,43 +28,37 @@ EXAMPLES = r"""
       min_count: 1
     - name: bgp_status_summary
 
-- set_fact:
-   "bgp_health":{
-        "bgp_table_version": 3,
-        "local_as": 500,
-        "neighbors": [
-            {
-                "bgp_table_version": 3,
-                "input_queue": 0,
-                "msg_rcvd": 52076,
-                "msg_sent": 52111,
-                "output_queue": 0,
-                "peer": "12.0.0.1",
-                "peer_as": 500,
-                "peer_state": 1,
-                "uptime": "4w4d",
-                "version": 4
-            },
-            {
-                "bgp_table_version": 1,
-                "input_queue": 0,
-                "msg_rcvd": 0,
-                "msg_sent": 0,
-                "output_queue": 0,
-                "peer": "23.0.0.1",
-                "peer_as": 500,
-                "peer_state": "Idle",
-                "uptime": "never",
-                "version": 4
-            }
-        ],
-        "path": {
-            "memory_usage": 288,
-            "total_entries": 2
-        },
-        "route_table_version": 3,
-        "router_id": "192.168.255.229"
-    }
+- ansible.builtin.set_fact:
+    bgp_health:
+      bgp_table_version: 3
+      local_as: 500
+      neighbors:
+      - bgp_table_version: 3
+        input_queue: 0
+        msg_rcvd: 52076
+        msg_sent: 52111
+        output_queue: 0
+        peer: 12.0.0.1
+        peer_as: 500
+        peer_state: 1
+        uptime: 4w4d
+        version: 4
+
+      - bgp_table_version: 1
+        input_queue: 0
+        msg_rcvd: 0
+        msg_sent: 0
+        output_queue: 0
+        peer: "23.0.0.1"
+        peer_as: 500,
+        peer_state: "Idle"
+        uptime: "never"
+        version: 4
+      path:
+        memory_usage: 288
+        total_entries: 2
+      route_table_version: 3
+      router_id: "192.168.255.229"
 
 - name: Set health checks fact
   ansible.builtin.set_fact:
