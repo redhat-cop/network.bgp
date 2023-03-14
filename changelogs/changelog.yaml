@@ -41,7 +41,11 @@ releases:
   2.0.0:
     changes:
       bugfixes:
+      - Fix filter plugins call issue for health checks.
       - Fix issue of state in remediate and detect.
+      doc_changes:
+      - Update README with installation commands.
+      - Update examples.
       major_changes:
       - Add ignore error features.
       - Add summary health checks.
@@ -50,7 +54,12 @@ releases:
       - Implement detect and remediate task enhancements.
     fragments:
     - fix_detect_remediate.yaml
+    - fix_validated_conent_bgp_issue.yaml
     - health_checks_features_enhancement.yaml
     - task_enhancements.yaml
+    - trivial_changes.yaml
     - update_docs_for_health_checks.yaml
+    - update_readme.yaml
+    - update_readme_example.yaml
+    - update_workflow.yaml
     release_date: '2023-02-23'

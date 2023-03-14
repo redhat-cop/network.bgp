@@ -23,7 +23,14 @@ Minor Changes
 Bugfixes
 --------
 
+- Fix filter plugins call issue for health checks.
 - Fix issue of state in remediate and detect.
+
+Documentation Changes
+---------------------
+
+- Update README with installation commands.
+- Update examples.
 
 v1.4.0
 ======
