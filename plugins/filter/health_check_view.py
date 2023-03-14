@@ -18,15 +18,15 @@ DOCUMENTATION = """
 
 EXAMPLES = r"""
 - name: health_check
-    vars:
-      checks:
-        - name: all_neighbors_up
-          ignore_errors: true
-        - name: all_neighbors_down
-          ignore_errors: true
-        - name: min_neighbors_up
-          min_count: 1
-        - name: bgp_status_summary
+  vars:
+    checks:
+    - name: all_neighbors_up
+      ignore_errors: true
+    - name: all_neighbors_down
+      ignore_errors: true
+    - name: min_neighbors_up
+      min_count: 1
+    - name: bgp_status_summary
 
 - set_fact:
    "bgp_health":{
