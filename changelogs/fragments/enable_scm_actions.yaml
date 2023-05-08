@@ -1,0 +1,3 @@
+---
+major_changes:
+  - Enable scm based operations(https://github.com/redhat-cop/network.bgp/issues/30)

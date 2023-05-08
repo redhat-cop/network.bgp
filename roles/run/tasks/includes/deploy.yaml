@@ -1,20 +1,5 @@
 ---
-- name: Set default inventory path
-  ansible.builtin.set_fact:
-    inventory: .
-  when: inventory_directory is not defined
-
-- name: Set default path
-  ansible.builtin.set_fact:
-    inventory: "{{ inventory_directory }}"
-  when: inventory_directory is defined
-
-- name: Set default path
-  ansible.builtin.set_fact:
-    scm_origin: "{{ origin }}"
-  when: origin is defined
-
-- name: Invoke gather function
+- name: Invoke deploy function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
@@ -22,18 +7,3 @@
     resources:
       - 'bgp_global'
       - 'bgp_address_family'
-
-    inventory_directory: "{{ inventory }}"
-    origin: "{{ scm_origin }}"
-  when: origin is defined
-
-- name: Invoke gather function
-  ansible.builtin.include_role:
-    name: network.base.resource_manager
-  vars:
-    action: 'deploy'
-    resources:
-      - 'bgp_global'
-      - 'bgp_address_family'
-    inventory_directory: "{{ inventory }}"
-  when: origin is not defined
