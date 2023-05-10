@@ -1,4 +1,6 @@
 ---
 - name: Include tasks
-  ansible.builtin.include_tasks: includes/{{ item.name }}.yaml
+  ansible.builtin.include_tasks: includes/{{ action.name }}.yaml
   loop: "{{ actions }}"
+  loop_control:
+    loop_var: action

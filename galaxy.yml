@@ -11,4 +11,5 @@ namespace: network
 readme: README.md
 repository: https://github.com/redhat-cop/network.bgp
 issues: https://github.com/redhat-cop/network.bgp/issues
+tags: [networking]
 version: 2.0.0
