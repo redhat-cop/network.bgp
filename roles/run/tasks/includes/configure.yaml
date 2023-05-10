@@ -4,7 +4,3 @@
     name: network.base.resource_manager
   vars:
     action: 'configure'
-    config:
-      - 'bgp_global'
-      - 'bgp_address_family'
-    state:

@@ -1,10 +1,11 @@
 ---
+- name: Resolve target resources
+  ansible.builtin.include_tasks: includes/resources.yaml
+
 - name: Invoke detect function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
     action: 'detect'
     state: 'replaced'
-    resources:
-      - 'bgp_global'
-      - 'bgp_address_family'
+    resources: "{{ bgp_resources }}"

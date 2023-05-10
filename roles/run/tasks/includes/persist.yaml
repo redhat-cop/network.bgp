@@ -1,10 +1,11 @@
 ---
+- name: Resolve target resources
+  ansible.builtin.include_tasks: includes/resources.yaml
+
 - name: Invoke gather function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
     action: 'persist'
-    resources:
-      - 'bgp_global'
-      - 'bgp_address_family'
-    persist_empty: "{{ persist_empty | d(False) }}"
+    resources: "{{ bgp_resources }}"
+    ignore_empty: "{{ persist_empty | default(true) }}"

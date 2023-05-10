@@ -1,9 +1,10 @@
 ---
+- name: Resolve target resources
+  ansible.builtin.include_tasks: includes/resources.yaml
+
 - name: Invoke gather function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
     action: 'gather'
-    resources:
-      - 'bgp_global'
-      - 'bgp_address_family'
+    resources: "{{ bgp_resources }}"
