@@ -1,0 +1,15 @@
+---
+- name: Set resources
+  ansible.builtin.set_fact:
+    bgp_resources:
+      - 'bgp_global'
+      - 'bgp_address_family'
+      - 'bgp_neighbor_address_family'
+  when: ansible_network_os == 'cisco.nxos.nxos'
+
+- name: Set resources
+  ansible.builtin.set_fact:
+    bgp_resources:
+      - 'bgp_global'
+      - 'bgp_address_family'
+  when: ansible_network_os != 'cisco.nxos.nxos'
