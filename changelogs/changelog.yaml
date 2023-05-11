@@ -63,3 +63,15 @@ releases:
     - update_readme_example.yaml
     - update_workflow.yaml
     release_date: '2023-02-23'
+  3.0.0:
+    changes:
+      bugfixes:
+      - add resources.yaml file.
+      - rename var in task.
+      major_changes:
+      - Enable scm based operations(https://github.com/redhat-cop/network.bgp/issues/30)
+    fragments:
+    - add_resources.yaml
+    - enable_scm_actions.yaml
+    - fix_health_check_var_name.yaml
+    release_date: '2023-05-11'
