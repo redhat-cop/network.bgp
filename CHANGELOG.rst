@@ -5,6 +5,20 @@ Network Bgp Collection Release Notes
 .. contents:: Topics
 
 
+v3.0.0
+======
+
+Major Changes
+-------------
+
+- Enable scm based operations(https://github.com/redhat-cop/network.bgp/issues/30)
+
+Bugfixes
+--------
+
+- add resources.yaml file.
+- rename var in task.
+
 v2.0.0
 ======
 
