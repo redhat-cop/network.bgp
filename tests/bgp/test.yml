@@ -1,5 +1,6 @@
 ---
-- hosts: ios
+- name: Run BGP tests
+  hosts: ios
   gather_facts: false
   roles:
     - tests

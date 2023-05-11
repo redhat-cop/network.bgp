@@ -26,7 +26,7 @@ collections:
 ```
 
 **Capabilities**
-- `Build Brownfield Inventory`: This enables users to fetch the YAML strcutured resource module facts for BGP resources bgp_global, bgp_address_family
+- `Build Brownfield Inventory`: This enables users to fetch the YAML structured resource module facts for BGP resources like bgp_global, bgp_address_family
   and bgp_neighbor_address_family and save it as host_vars to local or remote data-store which could be used as single SOT for other operations.
 - `BGP Resource Management`: Users want to be able to manage the BGP global, BGP address family and BGP neighbor address family configurations.
   This also includes the enablement of gathering facts, updating BGP resource host-vars and deploying config onto the appliance.
@@ -73,7 +73,7 @@ health_checks.yml
 ### Building Brownfield Inventory with Persist
 - Persist operation fetch the bgp_global and bgp_address_family facts and store them as host vars.
 - Result of successful Persist operation would be host_vars having YAML formatted resource facts.
-- These host_vars could exist locally or even published to remote repository acting as SOT for operations like deploy, etc.
+- These host_vars could exist locally or even published to remote repository acting as SOT for operations like deploy, remediate, detect, etc.
 
 #### fetch bgp resource facts and build local data_store.
 ```yaml
@@ -94,7 +94,7 @@ health_checks.yml
 
 #### fetch bgp resource facts and publish persisted host_vars inventory to github repository.
 ```yaml
-- name: Persist the facts into local data_store
+- name: Persist the facts into remote data_store which is a github repository
   hosts: rtr1
   gather_facts: false
   tasks:
@@ -207,7 +207,7 @@ health_checks.yml
   hosts: rtr1
   gather_facts: false
   tasks:
-  - name: BGP Manager
+  - name: Network BGP Manager
     include_role:
       name: network.bgp.run
     vars:
@@ -232,7 +232,7 @@ health_checks.yml
   hosts: rtr1
   gather_facts: false
   tasks:
-  - name: BGP Manager
+  - name: Network BGP Manager
     include_role:
       name: network.bgp.run
     vars:
@@ -249,7 +249,7 @@ health_checks.yml
   hosts: rtr1
   gather_facts: false
   tasks:
-  - name: BGP Manager
+  - name: Network BGP Manager
     include_role:
       name: network.bgp.run
     vars:
