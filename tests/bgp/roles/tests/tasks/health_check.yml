@@ -1,7 +1,7 @@
 ---
 - name: Set a health facts for the expect health facts
   ansible.builtin.set_fact:
-    run_expected_health_checks:
+    tests_expected_health_checks:
       bgp_table_version: 3
       local_as: 500
       neighbors:
@@ -35,7 +35,7 @@
 
 - name: Vars
   ansible.builtin.set_fact:
-    run_item:
+    tests_item:
       name: "health_check"
       vars:
         checks:
@@ -46,9 +46,9 @@
 
 - name: Set BGP health facts
   ansible.builtin.set_fact:
-    run_health_checks: "{{ bgp_health | ansible.utils.health_check_view(run_item) }}"
+    tests_health_checks: "{{ bgp_health | ansible.utils.health_check_view(tests_item) }}"
 
 
 - name: Check for accurate facts
   ansible.builtin.assert:
-    that: "{{ health_checks == run_expected_health_checks }}"
+    that: "{{ tests_health_checks == tests_expected_health_checks }}"
