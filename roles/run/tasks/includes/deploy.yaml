@@ -6,5 +6,5 @@
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: 'deploy'
+    operation: 'deploy'
     resources: "{{ bgp_resources }}"

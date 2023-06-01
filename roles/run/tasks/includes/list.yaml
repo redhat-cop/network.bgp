@@ -3,4 +3,4 @@
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: 'list'
+    operation: 'list'
