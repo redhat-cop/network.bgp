@@ -6,6 +6,6 @@
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: 'persist'
+    operation: 'persist'
     resources: "{{ bgp_resources }}"
     ignore_empty: "{{ persist_empty | default(true) }}"

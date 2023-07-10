@@ -1,0 +1,5 @@
+major_changes:
+  - Change `actions` to `operations`
+trivial:
+  - Prefix role name to existing role variables.
+    
