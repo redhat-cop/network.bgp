@@ -52,7 +52,7 @@ health_checks.yml
   hosts: rtr1
   gather_facts: false
   tasks:
-  - name: BGP Manager
+  - name: Manage BGP
     ansible.builtin.include_role:
       name: network.bgp.run
     vars:
