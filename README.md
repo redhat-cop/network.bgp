@@ -30,19 +30,19 @@ collections:
   and bgp_neighbor_address_family and save it as host_vars to local or remote data-store which could be used as single SOT for other operations.
 - `BGP Resource Management`: Users want to be able to manage the BGP global, BGP address family and BGP neighbor address family configurations.
   This also includes the enablement of gathering facts, updating BGP resource host-vars and deploying config onto the appliance.
-- `BGP Health Checks`: Users want to be able to perform health checks for BGP applications.These health checks should be  able to provide the BGP neighborship status with necessary details.
-- Detect Drift and remediate: This enables users to detect any drift between provided config and running config and if required then override the running config.
+- `BGP Health Checks`: Users want to be able to perform health checks for BGP applications. These health checks should be able to provide the BGP neighborship status with necessary details.
+- Detect Drift and remediate: This enables users to detect any drift between provided config and running-config and if required then override the running config.
 
 ### Usage
-- This platform agnostic role enables the user to perform BGP health checks.Users can perfrom following health checks:
+- This platform-agnostic role enables the user to perform BGP health checks. Users can perform the following health checks:
        `all_neigbors_up`
        `all_neighbors_down`
        `min_neighbors_up`
        `bgp_status_summary`
-- This role enables users to create a runtime brownfield inventory with all the BGP configuration in terms of host vars. These host vars are ansible facts which have been gathered through the *_bgp_global and *_bgp_address_family network resource module.The tasks offered by this role could be observed as below:
+- This role enables users to create a runtime brownfield inventory with all the BGP configurations in terms of host vars. These host vars are ansible facts which have been gathered through the *_bgp_global and *_bgp_address_family network resource module. The tasks offered by this role could be observed as below:
 
 ### Perform BGP Health Checks
-- Health Checks operation fetch the current status of BGP Neighborship health.
+- Health Checks operation fetchs the current status of BGP Neighborship health.
 - This can also include the details about the BGP metrics(state, message received/sent, version, etc).
 
 ```yaml
@@ -72,8 +72,8 @@ health_checks.yml
 
 ### Building Brownfield Inventory with Persist
 - Persist operation fetch the bgp_global and bgp_address_family facts and store them as host vars.
-- Result of successful Persist operation would be host_vars having YAML formatted resource facts.
-- These host_vars could exist locally or even published to remote repository acting as SOT for operations like deploy, remediate, detect, etc.
+- Result of a successful Persist operation would be host_vars having YAML formatted resource facts.
+- These host_vars could exist locally or even publishes in remote repository acting as SOT for operations like deploy, remediate, detect, etc.
 
 #### fetch bgp resource facts and build local data_store.
 ```yaml

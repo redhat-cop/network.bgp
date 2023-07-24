@@ -29,7 +29,6 @@
       path:
         memory_usage: 288
         total_entries: 2
-
       route_table_version: 3
       router_id: "22.0.0.1"
 
@@ -47,7 +46,6 @@
 - name: Set BGP health facts
   ansible.builtin.set_fact:
     tests_health_checks: "{{ bgp_health | ansible.utils.health_check_view(tests_item) }}"
-
 
 - name: Check for accurate facts
   ansible.builtin.assert:
