@@ -75,3 +75,15 @@ releases:
     - enable_scm_actions.yaml
     - fix_health_check_var_name.yaml
     release_date: '2023-05-11'
+  4.0.0:
+    changes:
+      bugfixes:
+      - check if BGP is not active
+      doc_changes:
+      - Update tests for gather, persist, detect, remediate and deploy.
+      major_changes:
+      - Change `actions` to `operations`
+    fragments:
+    - fix_lint_issues.yaml
+    - update_logs_and_tests.yaml
+    release_date: '2023-07-25'
