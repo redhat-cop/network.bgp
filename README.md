@@ -33,19 +33,6 @@ With this configured, simply run the following commands:
 ```
 ansible-galaxy collection install network.bgp
 ```
-#### Install from GitHub
-```
-ansible-galaxy collection install git+https://github.com/redhat-cop/network.bgp
-```
-
-You can also include it in a `requirements.yml` file and install it via `ansible-galaxy collection install -r requirements.yml` using the format:
-
-```yaml
-collections:
-- name: https://github.com/redhat-cop/network.bgp.git
-  type: git
-  version: main
-```
 
 **Capabilities**
 - `Build Brownfield Inventory`: This enables users to fetch the YAML structured resource module facts for BGP resources like bgp_global, bgp_address_family
