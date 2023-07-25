@@ -8,6 +8,11 @@
     - name: Reset configuration
       ansible.builtin.include_tasks: _cleanup.yaml
 
+    - name: Set data data_store
+      ansible.builtin.set_fact:
+        test_data_store:
+          local: "~/test_backup"
+
     - name: Set resources
       ansible.builtin.set_fact:
         test_resources:
@@ -20,8 +25,7 @@
       vars:
         operations:
           - name: persist
-        data_store:
-          local: "~/test_backup"
+        data_store: "{{ test_data_store }}"
 
     - name: Run network.bgp validated content with deploy operation
       ansible.builtin.include_role:
@@ -29,8 +33,7 @@
       vars:
         operations:
           - name: deploy
-        data_store:
-          local: "~/test_backup"
+        data_store: "{{ test_data_store }}"
       register: bgp_result
 
     - name: Assert that gresult

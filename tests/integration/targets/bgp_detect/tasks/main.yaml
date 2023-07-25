@@ -14,14 +14,18 @@
           - 'bgp_global'
           - 'bgp_address_family'
 
+    - name: Set data data_store
+      ansible.builtin.set_fact:
+        test_data_store:
+          local: "~/test_backup"
+
     - name: Run network.bgp validated content persist operation
       ansible.builtin.include_role:
         name: network.bgp.run
       vars:
         operations:
           - name: persist
-        data_store:
-          local: "~/test_backup"
+        data_store: "{{ test_data_store }}"
 
     - name: Run network.bgp validated content with detect operation
       ansible.builtin.include_role:
@@ -29,8 +33,7 @@
       vars:
         operations:
           - name: detect
-        data_store:
-          local: "~/test_backup"
+        data_store: "{{ test_data_store }}"
       register: bgp_result
 
     - name: Assert that gresult
