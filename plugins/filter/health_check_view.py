@@ -127,12 +127,13 @@ def health_check_view(*args, **kwargs):
             checks = vars.get('checks')
             dn_lst = []
             un_lst = []
-            for item in health_facts['neighbors']:
-                if item['peer_state'] in ('Established', 1):
-                    item['peer_state'] = 'Established'
-                    un_lst.append(item)
-                else:
-                    dn_lst.append(item)
+            if health_facts.get("neighbors"):
+                for item in health_facts['neighbors']:
+                    if item['peer_state'] in ('Established', 1):
+                        item['peer_state'] = 'Established'
+                        un_lst.append(item)
+                    else:
+                        dn_lst.append(item)
             stats = {}
             stats['up'] = len(un_lst)
             stats['down'] = len(dn_lst)

@@ -1,0 +1,26 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.bgp health_check opeartion integration tests on connection={{ ansible_connection }}"
+
+- name: Perform health check on BGP protocol
+  block:
+    - name: Run network.bgp validated content with health_checks operation
+      ansible.builtin.include_role:
+        name: network.bgp.run
+      vars:
+        operations:
+          - name: health_check
+            vars:
+              details: true
+              checks:
+                - name: all_neighbors_up
+                - name: all_neighbors_down
+                  ignore_errors: true
+                - name: min_neighbors_up
+                  min_count: 1
+      register: bgp_result
+
+- name: Debug
+  ansible.builtin.debug:
+    msg: "END network.bgp health_check opeartion integration tests on connection={{ ansible_connection }}"
