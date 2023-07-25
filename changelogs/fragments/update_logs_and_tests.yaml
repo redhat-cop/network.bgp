@@ -1,5 +1,5 @@
 ---
-buffixes:
+bugfixes:
   - check if BGP is not active
 doc_changes:
   - Update tests for gather, persist, detect, remediate and deploy.
