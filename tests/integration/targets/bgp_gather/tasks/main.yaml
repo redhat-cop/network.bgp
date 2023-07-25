@@ -10,7 +10,7 @@
         name: network.bgp.run
       vars:
         operations:
-          name: gather
+          - name: gather
       register: bgp_result
 
     - name: Assert that gather result

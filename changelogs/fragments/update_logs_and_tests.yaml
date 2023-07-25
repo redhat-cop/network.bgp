@@ -1,3 +1,5 @@
 ---
-trivial:
-  - Update tests for gather, persist, remediate and deploy.
+buffixes:
+  - check if BGP is not active
+doc_changes:
+  - Update tests for gather, persist, detect, remediate and deploy.

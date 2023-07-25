@@ -34,7 +34,7 @@
         name: network.bgp.run
       vars:
         operations:
-          -name: remediate
+          - name: remediate
         data_store:
           local: "~/test_backup"
       register: bgp_result

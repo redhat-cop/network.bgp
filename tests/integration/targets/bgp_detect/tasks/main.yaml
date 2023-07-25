@@ -1,7 +1,7 @@
 ---
 - name: Debug
   ansible.builtin.debug:
-    msg: "START network.bgp deploy opeartion integration tests on connection={{ ansible_connection }}"
+    msg: "START network.bgp detect opeartion integration tests on connection={{ ansible_connection }}"
 
 - name: Cleanup, Read and Deploy
   block:
@@ -14,7 +14,7 @@
           - 'bgp_global'
           - 'bgp_address_family'
 
-    - name: Run network.bgp validated content with deploy operation
+    - name: Run network.bgp validated content persist operation
       ansible.builtin.include_role:
         name: network.bgp.run
       vars:
@@ -23,12 +23,12 @@
         data_store:
           local: "~/test_backup"
 
-    - name: Run network.bgp validated content with deploy operation
+    - name: Run network.bgp validated content with detect operation
       ansible.builtin.include_role:
         name: network.bgp.run
       vars:
         operations:
-          - name: deploy
+          - name: detect
         data_store:
           local: "~/test_backup"
       register: bgp_result
@@ -44,4 +44,4 @@
 
 - name: Debug
   ansible.builtin.debug:
-    msg: "END network.bgp deploy operation integration tests on connection={{ ansible_connection }}"
+    msg: "END network.bgp detect operation integration tests on connection={{ ansible_connection }}"
