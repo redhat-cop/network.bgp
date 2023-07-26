@@ -5,6 +5,24 @@ Network Bgp Collection Release Notes
 .. contents:: Topics
 
 
+v4.0.0
+======
+
+Major Changes
+-------------
+
+- Change `actions` to `operations`
+
+Bugfixes
+--------
+
+- check if BGP is not active
+
+Documentation Changes
+---------------------
+
+- Update tests for gather, persist, detect, remediate and deploy.
+
 v3.0.0
 ======
 
