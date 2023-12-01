@@ -5,3 +5,4 @@ exclude_paths:
 skip_list:
   # this rule error out correct vars names for network validated content.
   - var-naming[no-role-prefix]
+
