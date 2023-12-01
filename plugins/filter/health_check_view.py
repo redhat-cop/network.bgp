@@ -20,40 +20,40 @@ EXAMPLES = r"""
 - name: health_check
   vars:
     checks:
-    - name: all_neighbors_up
-      ignore_errors: true
-    - name: all_neighbors_down
-      ignore_errors: true
-    - name: min_neighbors_up
-      min_count: 1
-    - name: bgp_status_summary
+      - name: all_neighbors_up
+        ignore_errors: true
+      - name: all_neighbors_down
+        ignore_errors: true
+      - name: min_neighbors_up
+        min_count: 1
+      - name: bgp_status_summary
 
 - ansible.builtin.set_fact:
     bgp_health:
       bgp_table_version: 3
       local_as: 500
       neighbors:
-      - bgp_table_version: 3
-        input_queue: 0
-        msg_rcvd: 52076
-        msg_sent: 52111
-        output_queue: 0
-        peer: 12.0.0.1
-        peer_as: 500
-        peer_state: 1
-        uptime: 4w4d
-        version: 4
+        - bgp_table_version: 3
+          input_queue: 0
+          msg_rcvd: 52076
+          msg_sent: 52111
+          output_queue: 0
+          peer: 12.0.0.1
+          peer_as: 500
+          peer_state: 1
+          uptime: 4w4d
+          version: 4
 
-      - bgp_table_version: 1
-        input_queue: 0
-        msg_rcvd: 0
-        msg_sent: 0
-        output_queue: 0
-        peer: "23.0.0.1"
-        peer_as: 500,
-        peer_state: "Idle"
-        uptime: "never"
-        version: 4
+        - bgp_table_version: 1
+          input_queue: 0
+          msg_rcvd: 0
+          msg_sent: 0
+          output_queue: 0
+          peer: "23.0.0.1"
+          peer_as: 500,
+          peer_state: "Idle"
+          uptime: "never"
+          version: 4
       path:
         memory_usage: 288
         total_entries: 2
@@ -62,7 +62,7 @@ EXAMPLES = r"""
 
 - name: Set health checks fact
   ansible.builtin.set_fact:
-     health_checks: "{{ bgp_health | health_check_view(item) }}"
+    health_checks: "{{ bgp_health | health_check_view(item) }}"
 
 # ok: [192.168.22.43] => {
 #     "failed_when_result": false,
