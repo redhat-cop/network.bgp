@@ -1,6 +1,6 @@
 # Network BGP Validated Content
-[![CI](https://github.com/ansible-network/network.bgp/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/ansible-network/network.bgp/actions/workflows/tests.yml)
-[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7404/badge)](https://bestpractices.coreinfrastructure.org/projects/7404)
+[![CI](https://github.com/redhat-cop/network.bgp/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/redhat-cop/network.bgp/actions/workflows/tests.yml)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7661/badge)](https://bestpractices.coreinfrastructure.org/projects/7661)
 
 This repository contains the `network.bgp` Ansible Collection.
 
