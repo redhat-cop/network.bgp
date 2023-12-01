@@ -10,7 +10,7 @@ The `network.bgp` enables users to manage the BGP resources independent of platf
 
 ## Tested with Ansible
 
-Tested with ansible-core 2.13 releases.
+Tested with ansible-core 2.14 releases.
 
 ## Installation
 #### Install from Automation Hub
