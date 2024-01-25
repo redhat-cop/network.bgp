@@ -1,57 +1,70 @@
-# Network BGP Validated Content
+# Ansible Network BGP
 [![CI](https://github.com/redhat-cop/network.bgp/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/redhat-cop/network.bgp/actions/workflows/tests.yml)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7661/badge)](https://bestpractices.coreinfrastructure.org/projects/7661)
 
-This repository contains the `network.bgp` Ansible Collection.
 
-## Description
+## About
 
-The `network.bgp` enables users to manage the BGP resources independent of platforms and perform BGP health checks.
+- Ansible Network BGP Collection contains the role that provides a platform-agnostic way of
+  managing BGP protocol/resources. This collection provides the user the capabilities to gather,
+  deploy, remediate, configure and perform health checks for network BGP resources. 
 
-## Tested with Ansible
+- Network bgp collection can be used by anyone who is looking to manage and maintain BGP protocol/resources. This includes system administrators and IT professionals.
 
-Tested with ansible-core 2.14 releases.
+## Requirements
+- [Requires Ansible](https://github.com/redhat-cop/network.bgp/blob/main/meta/runtime.yml)
+- [Requires Content Collections](https://github.com/redhat-cop/network.bgp/blob/main/galaxy.yml#L5https://forum.ansible.com/c/news/5/none)
+- [Testing Requirements](https://github.com/redhat-cop/network.bgp/blob/main/test-requirements.txt)
+- Users also need to include platform collections as per their requirements. The supported platform collections are:
+  - [arista.eos](https://github.com/ansible-collections/arista.eos)
+  - [cisco.ios](https://github.com/ansible-collections/cisco.ios)
+  - [cisco.iosxr](https://github.com/ansible-collections/cisco.iosxr)
+  - [cisco.nxos](https://github.com/ansible-collections/cisco.nxos)
+  - [junipernetworks.junos](https://github.com/ansible-collections/junipernetworks.junos)
 
 ## Installation
-#### Install from Automation Hub
-
-To consume this Validated Content from Automation Hub, the following needs to be added to `ansible.cfg`:
-
+To consume this Validated Content from Automation Hub, the following needs to be added to ansible.cfg:
 ```
 [galaxy]
 server_list = automation_hub
 
 [galaxy_server.automation_hub]
-url=https://cloud.redhat.com/api/automation-hub/
+url=https://console.redhat.com/api/automation-hub/content/published/
 auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
 token=<SuperSecretToken>
 ```
+
 Get the required token from the [Automation Hub Web UI](https://console.redhat.com/ansible/automation-hub/token).
 
 With this configured, simply run the following commands:
 
 ```
+ansible-galaxy collection install network.base
 ansible-galaxy collection install network.bgp
 ```
 
-**Capabilities**
-- `Build Brownfield Inventory`: This enables users to fetch the YAML structured resource module facts for BGP resources like bgp_global, bgp_address_family
-  and bgp_neighbor_address_family and save it as host_vars to local or remote data store which could be used as a single SOT for other operations.
-- `BGP Resource Management`: Users want to be able to manage the BGP global, BGP address family and BGP neighbor address family configurations.
-  This also includes the enablement of gathering facts, updating BGP resource host-vars, and deploying config onto the appliance.
-- `BGP Health Checks`: Users want to be able to perform health checks for BGP applications. These health checks should be  able to provide the BGP neighborship status with necessary details.
-- Detect Drift and remediate: This enables users to detect any drift between provided config and the running config and if required then override the running config.
+## Use Cases
 
-### Usage
-- This platform-agnostic role enables the user to perform BGP health checks. Users can perform the following health checks:
+`Build Brownfield Inventory`:
+- This enables users to fetch the YAML structured resource module facts for BGP resources like bgp_global, bgp_address_family and bgp_neighbor_address_family and save it as host_vars to the local or remote data store which could be used as a single SOT for other operations.
+  
+`BGP Resource Management`:
+- Users want to be able to manage the BGP global, BGP address family and BGP neighbor address family configurations. This also includes the enablement of gathering facts, updating BGP resource host-vars, and deploying config onto the appliance.
+
+`BGP Health Checks`: Users want to be able to perform health checks for BGP applications. These health checks should be able to provide the BGP neighborship status with necessary details.
+  
+`Detect Drift and remediate`: This enables users to detect any drift between the provided config and the running config and if required then override the running config.
+
+- So in summary this platform-agnostic role enables the user to perform BGP health checks. Users can perform the following health checks:
        `all_neigbors_up`
        `all_neighbors_down`
        `min_neighbors_up`
        `bgp_status_summary`
-- This role enables users to create a runtime brownfield inventory with all the BGP configurations in terms of host vars. These host vars are ansible facts that have been gathered through the *_bgp_global and *_bgp_address_family network resource modules. The tasks offered by this role could be observed below:
+  
+This role enables users to create a runtime brownfield inventory with all the BGP configurations in terms of host vars. These host vars are ansible facts that have been gathered through the *_bgp_global and *_bgp_address_family network resource modules. The tasks offered by this role can be observed below:
 
 ### Perform BGP Health Checks
-- Health Checks operation fetch the current status of BGP Neighborship health.
+- Health Checks operation fetches the current status of BGP Neighborship health.
 - This can also include the details about the BGP metrics(state, message received/sent, version, etc).
 
 ```yaml
@@ -81,7 +94,7 @@ health_checks.yml
 
 ### Building Brownfield Inventory with Persist
 - Persist operation fetches the bgp_global and bgp_address_family facts and stores them as host vars.
-- Result of a successful Persist operation would be host_vars having YAML formatted resource facts.
+- The result of a successful Persist operation would be host_vars having YAML formatted resource facts.
 - These host_vars could exist locally or even be published to a remote repository acting as SOT for operations like deploy, remediate, detect, etc.
 
 #### fetch bgp resource facts and build local data_store.
@@ -98,7 +111,7 @@ health_checks.yml
       operations:
         - name: persist
       data_store:
-        local: "~/backup/network"
+        local: "~/bgp/network"
 ```
 
 #### fetch bgp resource facts and publish persisted host_vars inventory to GitHub repository.
@@ -126,8 +139,8 @@ health_checks.yml
 ```
 
 ### Display Structured Data with Gather
-- Gather operation gathers the running-configuration specific to bgp_global, bgp_address_family, and bgp_neighbor_address_family resources
-  and display these facts in YAML formatted structures.
+- gather operation gathers the running configuration specific to bgp_global, bgp_address_family, and bgp_neighbor_address_family resources
+  and displays these facts in YAML formatted structures.
 
 ```yaml
 - name: Display BGP resources in a structured format
@@ -146,7 +159,7 @@ health_checks.yml
 ### Deploy BGP Configuration
 - Deploy operation will read the facts from the provided/default or remote inventory and deploy the changes onto the appliances.
 
-#### read host_vars from local data_store and deploy on to the field.
+#### read host_vars from local data_store and deploy onto the field.
 ```yaml
 - name: Deploy changes
   hosts: rtr1
@@ -160,7 +173,7 @@ health_checks.yml
       operations:
         - name: deploy
       data_store:
-        local: "~/backup/network"
+        local: "~/bgp/network"
 ```
 
 #### retrieve host_cars from the GitHub repository and deploy changes onto the field.
@@ -205,7 +218,7 @@ health_checks.yml
       operations:
         - name: detect
       data_store:
-        local: "~/backup/network"
+        local: "~/bgp/network"
 ```
 
 - Detect operation will read the facts from the GitHub repository inventory and detect if any configuration diff exists w.r.t running-config.
@@ -234,7 +247,7 @@ health_checks.yml
 ```
 
 #### Remediate configuration drift in BGP Configuration
-- Remediate operation will read the facts from the locally provided/default inventory and remediate if any configuration changes are there on the appliances using overridden state.
+- remediate operation will read the facts from the locally provided/default inventory and remediate if any configuration changes are there on the appliances using the overridden state.
 
 ```yaml
 - name: Remediate configuration
@@ -249,9 +262,9 @@ health_checks.yml
       operations:
         - name: remediate
       data_store:
-        local: "~/backup/network"
+        local: "~/bgp/network"
 ```
-- Remediate operation will read the facts from GitHub repository and remediate if any configuration changes are there on the appliances using overridden state.
+- remediate operation will read the facts from the GitHub repository and remediate if any configuration changes are there on the appliances using the overridden state.
 
 ```yaml
 - name: Remediate configuration
@@ -274,18 +287,71 @@ health_checks.yml
               name: "{{ ansible_github }}"
               email: "{{ your_email@example.com }}"
 
+## Testing
+
+The project uses tox to run `ansible-lint` and `ansible-test sanity`.
+Assuming this repository is checked out in the proper structure,
+e.g. `collections_root/ansible_collections/network/backup`, run:
+
+```shell
+  tox -e ansible-lint
+  tox -e py39-sanity
+```
+
+To run integration tests, ensure that your inventory has a `network_base` group.
+Depending on what test target you are running, comment out the host(s).
+
+```shell
+[network_hosts]
+ios
+junos
+
+[ios:vars]
+< enter inventory details for this group >
+
+[junos:vars]
+< enter inventory details for this group >
+```
+
+```shell
+  ansible-test network-integration -i /path/to/inventory --python 3.9 [target]
+```
+
+## Contributing
+
+We welcome community contributions to this collection. If you find problems, please open an issue or create a PR against this repository.
+
+Don't know how to start? Refer to the [Ansible community guide](https://docs.ansible.com/ansible/devel/community/index.html)!
+
+Want to submit code changes? Take a look at the [Quick-start development guide](https://docs.ansible.com/ansible/devel/community/create_pr_quick_start.html).
+
+We also use the following guidelines:
+
+* [Collection review checklist](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_reviewing.html)
+* [Ansible development guide](https://docs.ansible.com/ansible/devel/dev_guide/index.html)
+* [Ansible collection development guide](https://docs.ansible.com/ansible/devel/dev_guide/developing_collections.html#contributing-to-collections)
+
 ### Code of Conduct
 This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
 Please read and familiarize yourself with this document.
 
-
 ## Release notes
 
-Release notes are available [here](https://github.com/redhat-cop/network.bgp/blob/main/CHANGELOG.rst).
+Release notes are available [here](https://github.com/redhat-cop/network.backup/blob/main/CHANGELOG.rst).
+
+## Related information
+
+- [Developing network resource modules](https://github.com/ansible-network/networking-docs/blob/main/rm_dev_guide.md)
+- [Ansible Networking docs](https://github.com/ansible-network/networking-docs)
+- [Ansible Collection Overview](https://github.com/ansible-collections/overview)
+- [Ansible Roles overview](https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_roles.html)
+- [Ansible User guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+- [Ansible Developer guide](https://docs.ansible.com/ansible/latest/dev_guide/index.html)
+- [Ansible Community Code of Conduct](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html)
 
 ## Licensing
 
 GNU General Public License v3.0 or later.
 
-See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
+See [LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
