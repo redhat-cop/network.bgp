@@ -7,9 +7,9 @@
 
 - Ansible Network BGP Collection contains the role that provides a platform-agnostic way of
   managing BGP protocol/resources. This collection provides the user the capabilities to gather,
-  deploy, remediate, configure and perform health checks for network BGP resources. 
+  deploy, remediate, configure and perform health checks for network BGP resources.
 
-- Network bgp collection can be used by anyone who is looking to manage and maintain BGP protocol/resources. This includes system administrators and IT professionals.
+- Network BGP collection can be used by anyone who is looking to manage and maintain BGP protocol/resources. This includes system administrators and IT professionals.
 
 ## Requirements
 - [Requires Ansible](https://github.com/redhat-cop/network.bgp/blob/main/meta/runtime.yml)
@@ -114,7 +114,7 @@ health_checks.yml
         local: "~/bgp/network"
 ```
 
-#### fetch bgp resource facts and publish persisted host_vars inventory to GitHub repository.
+#### fetch BGP resource facts and publish persisted host_vars inventory to GitHub repository.
 ```yaml
 - name: Persist the facts into remote data_store which is a GitHub repository
   hosts: rtr1
@@ -286,6 +286,7 @@ health_checks.yml
             user:
               name: "{{ ansible_github }}"
               email: "{{ your_email@example.com }}"
+```
 
 ## Testing
 
