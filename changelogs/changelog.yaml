@@ -90,10 +90,25 @@ releases:
   5.0.0:
     changes:
       major_changes:
-        - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
-          are EoL now.
-      release_summary:
-        Starting from this release, the minimum `ansible-core` version
+      - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
+        are EoL now.
+      release_summary: Starting from this release, the minimum `ansible-core` version
         this collection requires is `2.14.0`. The last known version compatible with
         ansible-core<2.14 is `v4.0.0`.
     release_date: '2023-12-01'
+  6.0.0:
+    changes:
+      doc_changes:
+      - Revised the instructions on when to utilize the token.
+      - Update readme as per the common template.
+      - Updated the URL to point to validated content instead of certified content.
+      major_changes:
+      - Bumping `requires_ansible` to `>=2.15.0`, since previous ansible-core versions
+        are EoL now.
+      release_summary: 'With this release, the minimum required version of `ansible-core`
+        for this collection is `2.15.0`. The last version known to be compatible with
+        `ansible-core` versions below `2.15` is v5.0.0.'
+    fragments:
+    - bump_215.yaml
+    - update_readme.yaml
+    release_date: '2024-06-12'
