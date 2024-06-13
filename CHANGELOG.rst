@@ -4,6 +4,13 @@ Network Bgp Collection Release Notes
 
 .. contents:: Topics
 
+v6.0.1
+======
+
+Release Summary
+---------------
+
+Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please check the changelog entry for v6.0.0 for details on what changed in that release.
 
 v6.0.0
 ======
@@ -12,7 +19,6 @@ Release Summary
 ---------------
 
 With this release, the minimum required version of `ansible-core` for this collection is `2.15.0`. The last version known to be compatible with `ansible-core` versions below `2.15` is v5.0.0.
-
 
 Major Changes
 -------------
