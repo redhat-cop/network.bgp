@@ -1,10 +1,10 @@
 ---
 - name: Resolve target resources
-  ansible.builtin.include_tasks: includes/resources.yaml
+  ansible.builtin.include_tasks: resources.yaml
 
 - name: Invoke deploy function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    operation: 'deploy'
+    operation: "deploy"
     resources: "{{ bgp_resources }}"
