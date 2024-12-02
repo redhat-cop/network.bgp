@@ -16,12 +16,12 @@
     - name: Set resources
       ansible.builtin.set_fact:
         test_resources:
-          - 'bgp_global'
-          - 'bgp_address_family'
+          - "bgp_global"
+          - "bgp_address_family"
 
     - name: Run network.bgp validated content with deploy operation
       ansible.builtin.include_role:
-        name: network.bgp.run
+        name: network.bgp.persist
       vars:
         operations:
           - name: persist
@@ -29,7 +29,7 @@
 
     - name: Run network.bgp validated content with deploy operation
       ansible.builtin.include_role:
-        name: network.bgp.run
+        name: network.bgp.deploy
       vars:
         operations:
           - name: deploy

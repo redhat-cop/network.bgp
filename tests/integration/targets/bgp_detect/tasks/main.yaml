@@ -11,8 +11,8 @@
     - name: Set resources
       ansible.builtin.set_fact:
         test_resources:
-          - 'bgp_global'
-          - 'bgp_address_family'
+          - "bgp_global"
+          - "bgp_address_family"
 
     - name: Set data data_store
       ansible.builtin.set_fact:
@@ -21,7 +21,7 @@
 
     - name: Run network.bgp validated content persist operation
       ansible.builtin.include_role:
-        name: network.bgp.run
+        name: network.bgp.persist
       vars:
         operations:
           - name: persist
@@ -29,7 +29,7 @@
 
     - name: Run network.bgp validated content with detect operation
       ansible.builtin.include_role:
-        name: network.bgp.run
+        name: network.bgp.detect
       vars:
         operations:
           - name: detect
