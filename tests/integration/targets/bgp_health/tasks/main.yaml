@@ -7,7 +7,7 @@
   block:
     - name: Run network.bgp validated content with health_checks operation
       ansible.builtin.include_role:
-        name: network.bgp.health_check
+        name: network.bgp.health_checks
       vars:
         operations:
           - name: health_check
