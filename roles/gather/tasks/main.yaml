@@ -4,7 +4,6 @@
 
 - name: Invoke gather function
   ansible.builtin.include_role:
-    name: network.base.resource_manager
+    name: network.base.gather
   vars:
-    operation: "gather"
-    resources: "{{ bgp_resources }}"
+    resources: "{{ gather_bgp_resources }}"

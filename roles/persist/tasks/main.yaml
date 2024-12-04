@@ -4,8 +4,7 @@
 
 - name: Invoke gather function
   ansible.builtin.include_role:
-    name: network.base.resource_manager
+    name: network.base.persist
   vars:
-    operation: "persist"
-    resources: "{{ bgp_resources }}"
+    resources: "{{ persist_bgp_resources }}"
     ignore_empty: "{{ persist_empty | default(true) }}"

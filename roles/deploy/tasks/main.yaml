@@ -4,7 +4,6 @@
 
 - name: Invoke deploy function
   ansible.builtin.include_role:
-    name: network.base.resource_manager
+    name: network.base.deploy
   vars:
-    operation: "deploy"
-    resources: "{{ bgp_resources }}"
+    resources: "{{ deploy_bgp_resources }}"

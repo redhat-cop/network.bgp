@@ -4,8 +4,7 @@
 
 - name: Invoke detect function
   ansible.builtin.include_role:
-    name: network.base.resource_manager
+    name: network.base.detect
   vars:
-    operation: "detect"
     state: "replaced"
-    resources: "{{ bgp_resources }}"
+    resources: "{{ detect_bgp_resources }}"
