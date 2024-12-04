@@ -1,7 +1,7 @@
 # BGP Remediate
 
 ## Overview
-The `remediate` role enables users to fix bgp configuration drifts by overriding the running configuration with the desired state provided in the inventory host variables. This role ensures that network devices are restored to their intended configurations.
+The `bgp.remediate` role enables users to fix bgp configuration drifts by overriding the running configuration with the desired state provided in the inventory host variables. This role ensures that network devices are restored to their intended configurations.
 
 
 ## Features
@@ -17,7 +17,7 @@ The `remediate` role enables users to fix bgp configuration drifts by overriding
 | `data_store`         | `""`          | yes      | dict | Specifies the data store to be used (local or SCM).           | See examples below. |
 
 ## Usage
-Below are examples demonstrating how to use the `remediate` role:
+Below are examples demonstrating how to use the `bgp.remediate` role:
 
 ### Example 1: Remediate Drift from Local Data Store
 This example reads inventory host variables from a local directory and applies them to the network devices if config drift exists:
