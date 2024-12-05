@@ -27,7 +27,7 @@ This example reads inventory host variables from a local directory and applies t
 ```yaml
 ---
 - name: Remediate configuration
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager
@@ -49,7 +49,7 @@ his example reads inventory host variables from a remote SCM repository and appl
 ```yaml
 ---
 - name: Remediate configuration
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager

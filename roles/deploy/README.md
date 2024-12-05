@@ -23,7 +23,7 @@ Below example playbook demonstrates how to use the `bgp.deploy` role, where we w
 
 ```yaml
 - name: Deploy changes
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager
@@ -39,7 +39,7 @@ Below is an example playbook demonstrating how to use the `bgp.deploy` role, whe
 
 ```yaml
 - name: retrieve config from GitHub repo and deploy changes
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager

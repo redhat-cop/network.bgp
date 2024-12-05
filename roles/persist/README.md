@@ -23,7 +23,7 @@ In this example, gathered facts are stored in a local directory:
 
 ```yaml
 - name: Persist the facts into host vars
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager
@@ -42,7 +42,7 @@ In this example, gathered facts are stored in a remote Git repository:
 
 ```yaml
 - name: Persist the facts into remote data_store which is a GitHub repository
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager

@@ -21,7 +21,7 @@ Below is an example playbook demonstrating how to use the `gather` role, where w
 
 ```yaml
 - name: Display BGP resources in a structured format
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: BGP Manager

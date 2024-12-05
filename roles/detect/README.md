@@ -23,7 +23,7 @@ Below example playbook demonstrates how to use the `bgp.detect` role, where we `
 
 ```yaml
 - name: Configuration drift detection
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager
@@ -39,7 +39,7 @@ Below example playbook demonstrates how to use the `bgp.detect` role, where we `
 
 ```yaml
 - name: Configuration drift detection
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: Network BGP Manager

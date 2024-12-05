@@ -17,7 +17,7 @@ The role enables user to perform BGP health checks.
 health_checks.yml
 ---
 - name: Perform health checks
-  hosts: rtr1
+  hosts: all
   gather_facts: false
   tasks:
   - name: BGP Manager
