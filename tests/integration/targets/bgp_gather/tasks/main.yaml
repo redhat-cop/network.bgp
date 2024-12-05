@@ -9,8 +9,6 @@
       ansible.builtin.include_role:
         name: network.bgp.gather
       vars:
-        operations:
-          - name: gather
       register: bgp_result
 
     - name: Assert that gather result

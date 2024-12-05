@@ -23,8 +23,6 @@
       ansible.builtin.include_role:
         name: network.bgp.persist
       vars:
-        operations:
-          - name: persist
         data_store: "{{ test_data_store }}"
 
     - name: Assert file generations
@@ -37,8 +35,6 @@
       ansible.builtin.include_role:
         name: network.bgp.remediate
       vars:
-        operations:
-          - name: remediate
         data_store: "{{ test_data_store }}"
       register: bgp_result
 

@@ -25,14 +25,14 @@ health_checks.yml
       name: network.bgp.health_checks
     vars:
       ansible_network_os: cisco.ios.ios
-      operations:
-        - name: health_check
-          vars:
-            details: True
-            checks:
-              - name: all_neighbors_up
-              - name: all_neighbors_down
-                ignore_errors: true
-              - name: min_neighbors_up
-                min_count: 1
+      bgp_health_check:
+        name: health_check
+        vars:
+          details: true
+          checks:
+            - name: all_neighbors_up
+            - name: all_neighbors_down
+              ignore_errors: true
+            - name: min_neighbors_up
+              min_count: 1
 ```

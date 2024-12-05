@@ -23,16 +23,12 @@
       ansible.builtin.include_role:
         name: network.bgp.persist
       vars:
-        operations:
-          - name: persist
         data_store: "{{ test_data_store }}"
 
     - name: Run network.bgp validated content with detect operation
       ansible.builtin.include_role:
         name: network.bgp.detect
       vars:
-        operations:
-          - name: detect
         data_store: "{{ test_data_store }}"
       register: bgp_result
 
