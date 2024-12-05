@@ -1,0 +1,3 @@
+---
+- name: Include health check tasks
+  ansible.builtin.include_tasks: "health_check.yaml"

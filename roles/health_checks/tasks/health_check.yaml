@@ -1,0 +1,12 @@
+---
+- name: Include tasks {{ ansible_network_os.split('.')[2] }}
+  ansible.builtin.include_tasks: ./{{ ansible_network_os.split('.')[2] }}.yaml
+
+- name: Set health checks fact
+  ansible.builtin.set_fact:
+    health_checks: "{{ bgp_health | network.bgp.health_check_view(bgp_health_check) }}"
+
+- name: BGP health checks
+  ansible.builtin.debug:
+    var: health_checks
+  failed_when: "'unsuccessful' == health_checks.status"
