@@ -9,16 +9,16 @@
       ansible.builtin.include_role:
         name: network.bgp.health_checks
       vars:
-        operations:
-          - name: health_check
-            vars:
-              details: true
-              checks:
-                - name: all_neighbors_up
-                - name: all_neighbors_down
-                  ignore_errors: true
-                - name: min_neighbors_up
-                  min_count: 1
+        bgp_health_check:
+          name: health_check
+          vars:
+            details: true
+            checks:
+              - name: all_neighbors_up
+              - name: all_neighbors_down
+                ignore_errors: true
+              - name: min_neighbors_up
+                min_count: 1
       register: bgp_result
 
 - name: Debug
