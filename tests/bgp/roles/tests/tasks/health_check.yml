@@ -48,7 +48,6 @@
   ansible.builtin.set_fact:
     tests_health_checks: "{{ bgp_health | ansible.utils.health_check_view(tests_item) }}"
 
-
 - name: Check for accurate facts
   ansible.builtin.assert:
     that: "{{ tests_health_checks == tests_expected_health_checks }}"

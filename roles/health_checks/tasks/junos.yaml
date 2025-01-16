@@ -6,7 +6,6 @@
       name: ansible.netcommon.content_templates
     set_fact: bgp_health
 
-
 - name: Show Summary facts
   ansible.builtin.debug:
     msg: "{{ bgp_health }}"
