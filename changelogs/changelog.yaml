@@ -119,8 +119,18 @@ releases:
   6.0.1:
     changes:
       release_summary:
-        Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please check the
-        changelog entry for v6.0.0  for details on what changed in that release.
+        Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please
+        check the changelog entry for v6.0.0  for details on what changed in that
+        release.
     fragments:
       - release_601.yml
     release_date: "2024-06-13"
+  7.0.0:
+    changes:
+      major_changes:
+        - Restructured the network.bgp collection by converting supported operations
+          into separate roles.
+    fragments:
+      - fix_ci.yaml
+      - restructure.yaml
+    release_date: "2025-01-17"
