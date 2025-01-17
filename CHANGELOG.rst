@@ -4,13 +4,21 @@ Network Bgp Collection Release Notes
 
 .. contents:: Topics
 
+v7.0.0
+======
+
+Major Changes
+-------------
+
+- Restructured the network.bgp collection by converting supported operations into separate roles.
+
 v6.0.1
 ======
 
 Release Summary
 ---------------
 
-Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please check the changelog entry for v6.0.0 for details on what changed in that release.
+Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please check the changelog entry for v6.0.0  for details on what changed in that release.
 
 v6.0.0
 ======
