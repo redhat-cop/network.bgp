@@ -3,134 +3,131 @@ releases:
   1.0.0:
     changes:
       minor_changes:
-        - Add Network BGP role.
-        - Fix ansible lint erros.
+      - Add Network BGP role.
+      - Fix ansible lint erros.
     fragments:
-      - add_network_bgp_role.yaml
-      - ansible_lint_fixtures.yaml
-      - update_sanity_jobs.yaml
-    release_date: "2022-11-04"
+    - add_network_bgp_role.yaml
+    - ansible_lint_fixtures.yaml
+    - update_sanity_jobs.yaml
+    release_date: '2022-11-04'
   1.1.0:
     changes:
-      release_summary:
-        Re-releasing v1.0.0 with updated version tag and fixed URLs
+      release_summary: Re-releasing v1.0.0 with updated version tag and fixed URLs
         for issues and repository in galaxy.yml.
     fragments:
-      - prep_1.1.0.yaml
-    release_date: "2022-11-09"
+    - prep_1.1.0.yaml
+    release_date: '2022-11-09'
   1.2.0:
     changes:
-      release_summary:
-        Re-releasing v1.1.0 with updated version tag and fixed role
+      release_summary: Re-releasing v1.1.0 with updated version tag and fixed role
         name.
     fragments:
-      - prep_1.2.0.yaml
-    release_date: "2022-11-09"
+    - prep_1.2.0.yaml
+    release_date: '2022-11-09'
   1.3.0:
     changes:
       minor_changes:
-        - Update parsers for network platforms
+      - Update parsers for network platforms
     fragments:
-      - update_parsers.yaml
-    release_date: "2022-11-30"
+    - update_parsers.yaml
+    release_date: '2022-11-30'
   1.4.0:
     changes:
       minor_changes:
-        - correct network resource manager role invoking
+      - correct network resource manager role invoking
     fragments:
-      - invoke_network_bgp.yaml
-    release_date: "2022-12-02"
+    - invoke_network_bgp.yaml
+    release_date: '2022-12-02'
   2.0.0:
     changes:
       bugfixes:
-        - Fix filter plugins call issue for health checks.
-        - Fix issue of state in remediate and detect.
+      - Fix filter plugins call issue for health checks.
+      - Fix issue of state in remediate and detect.
       doc_changes:
-        - Update README with installation commands.
-        - Update examples.
+      - Update README with installation commands.
+      - Update examples.
       major_changes:
-        - Add ignore error features.
-        - Add summary health checks.
-        - Update health checks to collectively fail when any health-check fails.
+      - Add ignore error features.
+      - Add summary health checks.
+      - Update health checks to collectively fail when any health-check fails.
       minor_changes:
-        - Implement detect and remediate task enhancements.
+      - Implement detect and remediate task enhancements.
     fragments:
-      - fix_detect_remediate.yaml
-      - fix_validated_conent_bgp_issue.yaml
-      - health_checks_features_enhancement.yaml
-      - task_enhancements.yaml
-      - trivial_changes.yaml
-      - update_docs_for_health_checks.yaml
-      - update_readme.yaml
-      - update_readme_example.yaml
-      - update_workflow.yaml
-    release_date: "2023-02-23"
+    - fix_detect_remediate.yaml
+    - fix_validated_conent_bgp_issue.yaml
+    - health_checks_features_enhancement.yaml
+    - task_enhancements.yaml
+    - trivial_changes.yaml
+    - update_docs_for_health_checks.yaml
+    - update_readme.yaml
+    - update_readme_example.yaml
+    - update_workflow.yaml
+    release_date: '2023-02-23'
   3.0.0:
     changes:
       bugfixes:
-        - add resources.yaml file.
-        - rename var in task.
+      - add resources.yaml file.
+      - rename var in task.
       major_changes:
-        - Enable scm based operations(https://github.com/redhat-cop/network.bgp/issues/30)
+      - Enable scm based operations(https://github.com/redhat-cop/network.bgp/issues/30)
     fragments:
-      - add_resources.yaml
-      - enable_scm_actions.yaml
-      - fix_health_check_var_name.yaml
-    release_date: "2023-05-11"
+    - add_resources.yaml
+    - enable_scm_actions.yaml
+    - fix_health_check_var_name.yaml
+    release_date: '2023-05-11'
   4.0.0:
     changes:
       bugfixes:
-        - check if BGP is not active
+      - check if BGP is not active
       doc_changes:
-        - Update tests for gather, persist, detect, remediate and deploy.
+      - Update tests for gather, persist, detect, remediate and deploy.
       major_changes:
-        - Change `actions` to `operations`
+      - Change `actions` to `operations`
     fragments:
-      - fix_lint_issues.yaml
-      - update_logs_and_tests.yaml
-    release_date: "2023-07-25"
+    - fix_lint_issues.yaml
+    - update_logs_and_tests.yaml
+    release_date: '2023-07-25'
   5.0.0:
     changes:
       major_changes:
-        - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
-          are EoL now.
-      release_summary:
-        Starting from this release, the minimum `ansible-core` version
+      - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
+        are EoL now.
+      release_summary: Starting from this release, the minimum `ansible-core` version
         this collection requires is `2.14.0`. The last known version compatible with
         ansible-core<2.14 is `v4.0.0`.
-    release_date: "2023-12-01"
+    release_date: '2023-12-01'
   6.0.0:
     changes:
       doc_changes:
-        - Revised the instructions on when to utilize the token.
-        - Update readme as per the common template.
-        - Updated the URL to point to validated content instead of certified content.
+      - Revised the instructions on when to utilize the token.
+      - Update readme as per the common template.
+      - Updated the URL to point to validated content instead of certified content.
       major_changes:
-        - Bumping `requires_ansible` to `>=2.15.0`, since previous ansible-core versions
-          are EoL now.
-      release_summary:
-        With this release, the minimum required version of `ansible-core`
+      - Bumping `requires_ansible` to `>=2.15.0`, since previous ansible-core versions
+        are EoL now.
+      release_summary: With this release, the minimum required version of `ansible-core`
         for this collection is `2.15.0`. The last version known to be compatible with
         `ansible-core` versions below `2.15` is v5.0.0.
     fragments:
-      - bump_215.yaml
-      - update_readme.yaml
-    release_date: "2024-06-12"
+    - bump_215.yaml
+    - update_readme.yaml
+    release_date: '2024-06-12'
   6.0.1:
     changes:
-      release_summary:
-        Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please
+      release_summary: Re-releasing v6.0.0 as v6.0.1 with passing CI check. Please
         check the changelog entry for v6.0.0  for details on what changed in that
         release.
     fragments:
-      - release_601.yml
-    release_date: "2024-06-13"
+    - release_601.yml
+    release_date: '2024-06-13'
   7.0.0:
     changes:
       major_changes:
-        - Restructured the network.bgp collection by converting supported operations
-          into separate roles.
+      - Restructured the network.bgp collection by converting supported operations
+        into separate roles.
     fragments:
-      - fix_ci.yaml
-      - restructure.yaml
-    release_date: "2025-01-17"
+    - fix_ci.yaml
+    - restructure.yaml
+    release_date: '2025-01-17'
+  8.0.0:
+    release_date: '2025-08-19'
